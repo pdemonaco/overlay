@@ -33,11 +33,10 @@ DEPEND="${RDEPEND}
 S=${WORKDIR}/${MY_P}
 
 src_configure() {
-	ECONF="--sysconfdir=/etc --prefix=/usr --libexecdir=/usr/libexec"
+	ECONF="--sysconfdir=/etc --prefix=/usr --libexecdir=/usr/libexec --with-charon=/usr/libexec/ipsec/charon-nm"
 
 	econf ${ECONF} \
-		$(use_disable nls) \
-		$(use_with charon "${ROOT}/usr/libexec/ipsec/charon-nm")
+		$(use_disable nls )
 }
 
 src_install() {

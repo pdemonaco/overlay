@@ -22,7 +22,8 @@ RDEPEND="
 	>=dev-libs/dbus-glib-0.102
 	>=net-misc/networkmanager-0.9.0
 	>=net-misc/strongswan-5.1.0[networkmanager]
-	>=x11-libs/gtk+-2.6:="
+	>=x11-libs/gtk+-2.6:=
+	gnome-base/gnome-keyring"
 
 DEPEND="${RDEPEND}
 	sys-devel/gettext

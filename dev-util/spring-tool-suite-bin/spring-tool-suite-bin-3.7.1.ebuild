@@ -18,34 +18,40 @@ SRC_URI="
 	x86? ( ${SRC_BASE}.tar.gz&r=1 -> eclipse-java-${RNAME}-${SR}-linux-gtk-${PV}.tar.gz )"
 
 LICENSE="EPL-1.0"
-SLOT="3.7.1"
+SLOT="${PV}"
 KEYWORDS="x86 amd64"
 IUSE=""
 
 RDEPEND="
-	>=virtual/jdk-1.6
+	>=virtual/jdk-1.7
 	x11-libs/gtk+:2"
 
 S=${WORKDIR}/sts-bundle
 
 src_install() {
 	local dest=/opt/${PN}-${SLOT}
+	
+	# Work area subdirectory
+	local sts=sts-${PV}.RELEASE
 
+	# Deploy everything but the executable
 	insinto ${dest}
-	doins -r features icon.xpm plugins artifacts.xml p2 eclipse.ini configuration dropins
-
+	doins -r ${sts}/artifacts.xml ${sts}/configuration  ${sts}/dropins ${sts}/features ${sts}/icon.xpm ${sts}/license.txt ${sts}/META-INF ${sts}/open_source_licenses.txt ${sts}/p2 ${sts}/plugins ${sts}/STS.ini
+	
+	# Install the exe
 	exeinto ${dest}
-	doexe eclipse
+	doexe ${sts}/STS
 
-	dohtml -r readme/*
+	# The readme is one html file
+	dohtml -r ${sts}/readme 
 
 	cp "${FILESDIR}"/eclipserc-bin-${SLOT} "${T}" || die
 	cp "${FILESDIR}"/eclipse-bin-${SLOT} "${T}" || die
-	sed "s@%SLOT%@${SLOT}@" -i "${T}"/eclipse{,rc}-bin-${SLOT} || die
+	#sed "s@%SLOT%@${SLOT}@" -i "${T}"/eclipse{,rc}-bin-${SLOT} || die
 
-	insinto /etc
-	newins "${T}"/eclipserc-bin-${SLOT} eclipserc-bin-${SLOT}
+	#insinto /etc
+	#newins "${T}"/eclipserc-bin-${SLOT} eclipserc-bin-${SLOT}
 
 	newbin "${T}"/eclipse-bin-${SLOT} eclipse-bin-${SLOT}
-	make_desktop_entry "eclipse-bin-${SLOT}" "Eclipse ${PV} (bin)" "${dest}/icon.xpm"
+	#make_desktop_entry "eclipse-bin-${SLOT}" "Eclipse ${PV} (bin)" "${dest}/icon.xpm"
 }

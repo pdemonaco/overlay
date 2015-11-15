@@ -45,13 +45,13 @@ src_install() {
 	# The readme is one html file
 	dohtml -r ${sts}/readme 
 
-	cp "${FILESDIR}"/eclipserc-bin-${SLOT} "${T}" || die
-	cp "${FILESDIR}"/eclipse-bin-${SLOT} "${T}" || die
-	#sed "s@%SLOT%@${SLOT}@" -i "${T}"/eclipse{,rc}-bin-${SLOT} || die
+	cp "${FILESDIR}"/stsrc-bin-${SLOT} "${T}" || die
+	cp "${FILESDIR}"/sts-bin-${SLOT} "${T}" || die
+	sed "s@%SLOT%@${SLOT}@" -i "${T}"/sts{,rc}-bin-${SLOT} || die
 
-	#insinto /etc
-	#newins "${T}"/eclipserc-bin-${SLOT} eclipserc-bin-${SLOT}
+	insinto /etc
+	newins "${T}"/stsrc-bin-${SLOT} stsrc-bin-${SLOT}
 
-	newbin "${T}"/eclipse-bin-${SLOT} eclipse-bin-${SLOT}
+	newbin "${T}"/sts-bin-${SLOT} sts-bin-${SLOT}
 	#make_desktop_entry "eclipse-bin-${SLOT}" "Eclipse ${PV} (bin)" "${dest}/icon.xpm"
 }

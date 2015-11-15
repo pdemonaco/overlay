@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI=5
 
@@ -16,8 +16,8 @@ SRC_URI="
 
 LICENSE="EPL-1.0"
 SLOT="${PV}"
-KEYWORDS="x86 amd64"
-IUSE=""
+KEYWORDS="~amd64 ~x86"
+IUSE="tc-server"
 
 RDEPEND="
 	>=virtual/jdk-1.7
@@ -27,20 +27,20 @@ S=${WORKDIR}/sts-bundle
 
 src_install() {
 	local dest=/opt/${PN}-${SLOT}
-	
+
 	# Work area subdirectory
 	local sts=sts-${PV}.RELEASE
 
 	# Deploy everything but the executable
 	insinto ${dest}
 	doins -r ${sts}/artifacts.xml ${sts}/configuration  ${sts}/dropins ${sts}/features ${sts}/icon.xpm ${sts}/license.txt ${sts}/META-INF ${sts}/open_source_licenses.txt ${sts}/p2 ${sts}/plugins ${sts}/STS.ini
-	
+
 	# Install the exe
 	exeinto ${dest}
 	doexe ${sts}/STS
 
 	# The readme is one html file
-	dohtml -r ${sts}/readme 
+	dohtml -r ${sts}/readme
 
 	# Configure the bin & install
 	cp "${FILESDIR}"/stsrc-bin-${SLOT} "${T}" || die

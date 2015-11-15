@@ -10,39 +10,36 @@
 #
 
 SLOT="%SLOT%"
+PN="sts-bin"
 
+# Load config files
 GLOBAL_STS_RC="/etc/sts-bin-${SLOT}"
 LOCAL_STS_RC="${HOME}/gentoo/.stsrc"
 [ -f "${GLOBAL_STS_RC}" ] && . "${GLOBAL_STS_RC}"
-[ -f "$HOME/gentoo/.eclipserc" ] && . "$HOME/gentoo/.eclipserc"
+[ -f "${LOCAL_STS_RC}" ] && . "${LOCAL_STS_RC}"
 
-ECLIPSE_HOME=${ECLIPSE_HOME:="/opt/-%SLOT%"}
-ECLIPSE_BIN="${ECLIPSE_HOME}/eclipse"
+# Declare paths & executable homes
+STS_HOME=${STS_HOME:="/opt/sts-bin-%SLOT%"}
+STS_BIN="${STS_HOME}/STS"
 
-if [ ! -x "${ECLIPSE_BIN}" ] ; then
-	echo "Failed to find executable '${ECLIPSE_BIN}'" > /dev/stderr
+# Validate environment
+if [ ! -x "${STS_BIN}" ] ; then
+	echo "Failed to find executable '${STS_BIN}'" > /dev/stderr
 	exit 1
 fi
 
 if [ $(id -u) -eq 0 ] ; then
-	echo "Do not run eclipse as root user! Exiting ..." > /dev/stderr
+	echo "Do not run spring tool suite as root user! Exiting ..." > /dev/stderr
 	exit 1
 fi
 
-case "$(java-config -f)" in
-	*gcj*)
-		export JAVA_PKG_CLASSMAP="${ECLIPSE_HOME}/eclipse.gcjdb"
-		;;
-esac
-
-#eval $(gjl --package "swt-${SLOT}" --get-args)
-
+# Configure environment variables
 [ -n "${ECLIPSE_XMS}" ] && VM_ARGS="${VM_ARGS} -Xms${ECLIPSE_XMS}"
 [ -n "${ECLIPSE_XMX}" ] && VM_ARGS="${VM_ARGS} -Xmx${ECLIPSE_XMX}"
 [ -n "${ECLIPSE_PERMSIZE}" ] && VM_ARGS="${VM_ARGS} -XX:PermSize=${ECLIPSE_PERMSIZE}"
 [ -n "${ECLIPSE_MAX_PERMSIZE}" ] && VM_ARGS="${VM_ARGS} -XX:MaxPermSize=${ECLIPSE_MAX_PERMSIZE}"
 
-# Fix for JRE 1.5.
+# Fix for JRE 1.5
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/lib
 
-exec "${ECLIPSE_BIN}" -vm $(java-config --java) "$@" "${ECLIPSE_USER_ARGS}" -vmargs ${VM_ARGS} 
+exec "${STS_BIN}" -vm $(java-config --java) "$@" "${ECLIPSE_USER_ARGS}" -vmargs ${VM_ARGS} 

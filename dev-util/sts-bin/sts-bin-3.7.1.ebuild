@@ -23,7 +23,7 @@ RDEPEND="
 	>=virtual/jdk-1.7
 	x11-libs/gtk+:2"
 
-S=${WORKDIR}/sts-bin
+S=${WORKDIR}/sts-bundle
 
 src_install() {
 	local dest=/opt/${PN}-${SLOT}

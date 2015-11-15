@@ -6,12 +6,6 @@ EAPI=5
 
 inherit eutils versionator
 
-SR=R
-RNAME="mars"
-
-http://dist.springsource.com/release/STS/3.7.1.RELEASE/dist/e4.5/spring-tool-suite-3.7.1.RELEASE-e4.5.1-linux-gtk-x86_64.tar.gz
-http://dist.springsource.com/release/STS/3.7.1.RELEASE/dist/e4.5/spring-tool-suite-3.7.1.RELEASE-e4.5.1-linux-gtk.tar.gz
-
 SRC_BASE="http://dist.springsource.com/release/STS/${PV}.RELEASE/dist/e4.5/spring-tool-suite-${PV}.RELEASE-e4.5.1-linux-gtk"
 
 DESCRIPTION="Spring Tool Suite"
@@ -48,7 +42,7 @@ src_install() {
 	# The readme is one html file
 	dohtml -r ${sts}/readme 
 
-	# Configure the bin & install it
+	# Configure the bin & install
 	cp "${FILESDIR}"/stsrc-bin-${SLOT} "${T}" || die
 	cp "${FILESDIR}"/sts-bin-${SLOT} "${T}" || die
 	sed "s@%SLOT%@${SLOT}@" -i "${T}"/sts{,rc}-bin-${SLOT} || die

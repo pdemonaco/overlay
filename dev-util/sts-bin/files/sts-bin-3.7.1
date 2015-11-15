@@ -1,6 +1,6 @@
 #! /bin/sh
 #
-# Tiny startup wrapper for Eclipse
+# Tiny startup wrapper for Spring Tool Suite
 #
 # Copyright (c) 2004, Karl Trygve Kalleberg <karltk@gentoo.org>
 # Copyright (c) 2007-2008, Jean-Noël Rivasseau <elvanor@gentoo.org>
@@ -11,10 +11,12 @@
 
 SLOT="%SLOT%"
 
-[ -f "/etc/eclipserc-bin-${SLOT}" ] && . "/etc/eclipserc-bin-${SLOT}"
+GLOBAL_STS_RC="/etc/sts-bin-${SLOT}"
+LOCAL_STS_RC="${HOME}/gentoo/.stsrc"
+[ -f "${GLOBAL_STS_RC}" ] && . "${GLOBAL_STS_RC}"
 [ -f "$HOME/gentoo/.eclipserc" ] && . "$HOME/gentoo/.eclipserc"
 
-ECLIPSE_HOME=${ECLIPSE_HOME:="/opt/eclipse-sdk-bin-%SLOT%"}
+ECLIPSE_HOME=${ECLIPSE_HOME:="/opt/-%SLOT%"}
 ECLIPSE_BIN="${ECLIPSE_HOME}/eclipse"
 
 if [ ! -x "${ECLIPSE_BIN}" ] ; then

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <use>
+    <flag name="tc-server">Include the bundled version of Pivotal tc Server</flag>
+  </use>
+  <longdescription>
+	 The tool suites provide ready-to-use combinations of language support, framework
+	 support, and runtime support, and combine them with the existing Java, Web and
+	 Java EE tooling from Eclipse. An integrated dashboard in the distribution
+	 makes it trivial to install further extensions that add support for technologies 
+	 such as Pivotal Cloud Foundry, Gradle or Pivotal tcServer. 
+  </longdescription>
+</pkgmetadata>

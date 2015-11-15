@@ -42,6 +42,9 @@ src_install() {
 	# The readme is one html file
 	dohtml -r ${sts}/readme
 
+	# Also extract the tc server if specified
+	use tc-server && doins -r pivotal-tc-server-developer-*.RELEASE
+
 	# Configure the bin & install
 	cp "${FILESDIR}"/stsrc-bin-${SLOT} "${T}" || die
 	cp "${FILESDIR}"/sts-bin-${SLOT} "${T}" || die

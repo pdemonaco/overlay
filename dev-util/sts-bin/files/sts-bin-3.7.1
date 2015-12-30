@@ -13,13 +13,13 @@ SLOT="%SLOT%"
 PN="sts-bin"
 
 # Load config files
-GLOBAL_STS_RC="/etc/sts-bin-${SLOT}"
+GLOBAL_STS_RC="/etc/${PN}-${SLOT}"
 LOCAL_STS_RC="${HOME}/gentoo/.stsrc"
 [ -f "${GLOBAL_STS_RC}" ] && . "${GLOBAL_STS_RC}"
 [ -f "${LOCAL_STS_RC}" ] && . "${LOCAL_STS_RC}"
 
 # Declare paths & executable homes
-STS_HOME=${STS_HOME:="/opt/sts-bin-%SLOT%"}
+STS_HOME=${STS_HOME:="/opt/${PN}-%SLOT%"}
 STS_BIN="${STS_HOME}/STS"
 
 # Validate environment
@@ -41,5 +41,8 @@ fi
 
 # Fix for JRE 1.5
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/lib
+
+# Potential webkit fix
+export SWT_GTK3=1
 
 exec "${STS_BIN}" -vm $(java-config --java) "$@" "${ECLIPSE_USER_ARGS}" -vmargs ${VM_ARGS} 

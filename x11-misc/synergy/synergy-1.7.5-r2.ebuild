@@ -90,10 +90,10 @@ src_test() {
 }
 
 src_install () {
-	dobin bin/${PN}{c,s} bin/syntool
+	dobin bin/${PN}{c,d,s} bin/syntool
 
 	if use qt4 ; then
-		newbin bin/${PN} qsynergy
+		newbin bin/${PN} synergy
 		newicon -s 256 "${DISTDIR}"/${PN}.png q${PN}.png
 		make_desktop_entry q${PN} ${PN/s/S} q${PN} Utility;
 	fi

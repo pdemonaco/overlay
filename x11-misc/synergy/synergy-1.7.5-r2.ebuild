@@ -101,8 +101,7 @@ src_install () {
 	insinto /etc
 	newins doc/synergy.conf.example synergy.conf
 
-	insinto /usr/lib/${PN}
-	doins lib/libns.so
+	dolib lib/*.{so}
 
 	newman doc/${PN}c.man ${PN}c.1
 	newman doc/${PN}s.man ${PN}s.1

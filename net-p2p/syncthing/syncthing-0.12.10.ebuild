@@ -29,7 +29,7 @@ S="${WORKDIR}"
 configDir="~/.config/syncthing"
 config="${configDir}/config.xml"
 
-src_install() {
+src_compile() {
 	# Create directory structure recommended by SyncThing Documentation
 	# Since Go is "very particular" about file locations.
 	local newBaseDir="src/github.com/${PN}"
@@ -43,6 +43,12 @@ src_install() {
 	# Build SyncThing ;D
 	go run build.go -version v${PV} -no-upgrade=true
 
+	# Move out of the go structure
+	cd ..
+	mv "${newWorkDir}" "${P}"
+}
+
+src_install() {
 	# Copy compiled binary over to image directory
 	dobin "bin/${PN}"
 

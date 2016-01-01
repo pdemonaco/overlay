@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -29,32 +29,32 @@ S="${WORKDIR}"
 configDir="~/.config/syncthing"
 config="${configDir}/config.xml"
 
-src_compile() {
-	# Create directory structure recommended by SyncThing Documentation
-	# Since Go is "very particular" about file locations.
-	local newBaseDir="src/github.com/${PN}"
-	local newWorkDir="${newBaseDir}/${PN}"
+# Directory structure recommended by SyncThing Documentation
+# Since Go is "very particular" about file locations.
+newBaseDir="src/github.com/${PN}"
+newWorkDir="${newBaseDir}/${PN}"
 
+src_compile() {
+	# Create the directory structure syncthing desires
 	mkdir -p "${newBaseDir}"
 	mv "${P}" "${newWorkDir}"
 
 	cd "${newWorkDir}"
 
-	# Build SyncThing ;D
+	# Build SyncThing! 
 	go run build.go -version v${PV} -no-upgrade=true
-
-	# Move out of the go structure
-	cd ..
-	mv "${newWorkDir}" "${P}"
 }
 
 src_install() {
+	# Move ourselves back to the working directory
+	cd "${newWorkDir}"
+
 	# Copy compiled binary over to image directory
 	dobin "bin/${PN}"
 
 	# Install the OpenRC init/conf files
-	doinitd "${FILESDIR}/init.d/${NAME}"
-	doconfd "${FILESDIR}/conf.d/${NAME}"
+	doinitd "${FILESDIR}/init.d/syncthing"
+	doconfd "${FILESDIR}/conf.d/syncthing"
 
 	# Install the systemd service files
 	if use systemd;	then

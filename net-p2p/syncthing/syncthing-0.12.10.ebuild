@@ -4,6 +4,8 @@
 
 EAPI=5
 
+inherit user systemd
+
 GITHUB_USER="syncthing"
 GITHUB_REPO="syncthing"
 GITHUB_TAG="${PV}"

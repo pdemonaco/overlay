@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -90,15 +90,17 @@ DEPEND="${COMMON_DEPEND}
 	${PYTHON_DEPS}
 	api? ( dev-libs/libxml2
 		net-misc/curl )
-	ovmf? ( 
-		dev-lang/nasm
-		$(python_gen_impl_dep sqlite) )
+	ovmf? (
+		$(python_gen_impl_dep sqlite)
+		amd64? ( dev-lang/nasm )
+	)
 	!amd64? ( >=sys-apps/dtc-1.4.0 )
 	amd64? ( sys-devel/bin86
 		system-seabios? ( sys-firmware/seabios )
 		sys-firmware/ipxe
 		sys-devel/dev86
-		sys-power/iasl )
+		sys-power/iasl
+	)
 	dev-lang/perl
 	app-misc/pax-utils
 	doc? (

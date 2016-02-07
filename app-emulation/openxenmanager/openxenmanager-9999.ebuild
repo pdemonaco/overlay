@@ -6,12 +6,12 @@ EAPI=5
 
 PYTHON_COMPAT=( python2_7 )
 
-inherit distutils-r1 git-r3
+inherit distutils-r1
 
 USER="OpenXenManager"
-REPO="openxenmanager"
-EGIT_REPO_URI="git://github.com/${USER}/${REPO}"
-S="${WORKDIR}/${REPO}"
+REPO="${PN}"
+EGIT_REPO_URI="git://github.com/${USER}/${PN}.git"
+inherit git-r3
 
 DESCRIPTION="Opensource XenServer/XCP Management GUI"
 HOMEPAGE="http://github.com/OpenXenManager/openxenmanager"
@@ -24,5 +24,6 @@ IUSE=""
 
 DEPEND="dev-python/configobj
 	dev-python/pygtk
-	dev-python/raven"
+	dev-python/raven
+	net-libs/gtk-vnc"
 RDEPEND="${DEPEND}"

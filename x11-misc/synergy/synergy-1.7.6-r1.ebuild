@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -6,11 +6,11 @@ EAPI=5
 inherit eutils flag-o-matic gnome2-utils cmake-utils qt4-r2
 
 DESCRIPTION="Lets you easily share a single mouse and keyboard between multiple computers"
-HOMEPAGE="http://synergy-project.org/ https://github.com/synergy/synergy"
+HOMEPAGE="http://synergy-project.org/ https://github.com/symless/synergy"
 ORG="symless"
 SRC_URI="
 	https://github.com/${ORG}/${PN}/archive/v${PV}-stable.tar.gz -> ${P}.tar.gz
-	https://dev.gentoo.org/~hasufell/distfiles/${PN}.png
+	https://dev.gentoo.org/~jer/${PN}.png
 "
 
 LICENSE="GPL-2"
@@ -91,10 +91,10 @@ src_test() {
 }
 
 src_install () {
-	dobin bin/${PN}{c,d,s} bin/syntool
+	dobin bin/${PN}{c,s} bin/syntool
 
 	if use qt4 ; then
-		dobin bin/synergy
+		newbin bin/${PN} qsynergy
 		newicon -s 256 "${DISTDIR}"/${PN}.png q${PN}.png
 		make_desktop_entry q${PN} ${PN/s/S} q${PN} Utility;
 	fi

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>pdemon@gmail.com</email>
+	</maintainer>
+	<longdescription lang="en">
+		CrashPlan is a package developed by Code42 software which provides
+		extensive automated backup and restore functionality. This can be 
+		between two user controlled machines, one machine and a direct or
+		network attached repository, or to their cloud service.
+	</longdescription>
+</pkgmetadata>

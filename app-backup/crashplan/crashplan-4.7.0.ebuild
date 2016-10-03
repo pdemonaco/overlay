@@ -51,7 +51,7 @@ src_unpack() {
 	esac
 
 	# Attempt to unpack that weird CPI file
-	cat "${WORKDIR}/${PN}_install/*.cpi" | gzip -d -c | \
+	cat "${WORKDIR}/${PN}-install/*.cpi" | gzip -d -c | \
 		cpio -i --no-preserve-owner || die "failed to extract cpi file!"
 }
 
@@ -96,22 +96,22 @@ src_install() {
 	cp -pPR ${WORKDIR}/${PN} || die "Failed to copy install files into target"
 
 	# Create a log directory
-	dodir "${dest}/log"
-	chmod 777 "${dest}/log"
+	dodir "${dest}/log" || die
+	chmod 777 "${dest}/log" || die
 
 	# Install the various script files
 	insopts -m755
 	insinto "${dest}/bin"
-	doins "${WORKDIR}/${PN}_install/scripts/${basename}Engine"
-	doins "${WORKDIR}/${PN}_install/scripts/${basename}Desktop"
+	doins "${WORKDIR}/${PN}-install/scripts/${basename}Engine" || die 
+	doins "${WORKDIR}/${PN}-install/scripts/${basename}Desktop" || die
 	insopts -m644
-	doins "${WORKDIR}/${PN}_install/scripts/run.conf"
+	doins "${WORKDIR}/${PN}-install/scripts/run.conf" || die
 
 	# Create the init script
-	doinitd "${FILESDIR}/${PN}"
+	doinitd "${FILESDIR}/${PN}" || die
 
 	# Create a shortcut for the desktop app
-	dosym "${dest}/bin/${basename}Desktop" "/usr/bin/${PN}"
+	dosym "${dest}/bin/${basename}Desktop" "/usr/bin/${PN}" || die
 }
 
 pkg_postinst() {

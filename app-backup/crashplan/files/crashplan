@@ -71,16 +71,17 @@ depend() {
 
 # Actual startup routine - depends on checkconfig
 start() {
-	ebegin "Starting ${SVCNAME}"
+    ebegin "Starting ${SVCNAME}"
    
     checkconfig || eend 1
     
     start-stop-daemon --pidfile "${CRASHPLAN_PIDFILE}" \
         --make-pidfile --chdir "${CRASHPLAN_DIR}" \
-        --stdout $CRASHPLAN_DIR/log/engine_output.log \
-        --stderr $CRASHPLAN_DIR/log/engine_error.log \
+        --stdout "$CRASHPLAN_DIR/log/engine_output.log" \
+        --stderr "$CRASHPLAN_DIR/log/engine_error.log" \
         --nice 19 --start --background --progress \
-        --exec $JAVACOMMON -- ${SRV_JAVA_OPTS} -classpath ${CRASHPLAN_FULL_CP} ${CRASHPLAN_SERVICE}
+        --exec "$JAVACOMMON" -- "${SRV_JAVA_OPTS}" -classpath \
+        "${CRASHPLAN_FULL_CP}" "${CRASHPLAN_SERVICE}"
 
     eend $?
 }

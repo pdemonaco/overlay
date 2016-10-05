@@ -91,17 +91,19 @@ src_install() {
 	local dest="/opt/${PN}"
 	local src="${WORKDIR}/${P}"
 
-	# Create the log directory
-	mkdir "${src}/log"
-	chmod 777 "${src}/log"
-
-	# Copy in the main binaries
+	# Copy in the main application
 	insinto "${dest}"
 	dodir "${dest}" || die "Failed to make ${dest}"
 	local ins_files=$(ls "${src}")
+	# TODO - fix the fucking permissions on this shit
 	for file in $ins_files; do
 		doins -r "${src}/${file}" || die "Failed to copy install files into target"
 	done
+
+	# Create the log directory
+	rmdir ${src}/log
+	diropts -m777
+	dodir ${dest}/log
 
 	# Install the various script files
 	insopts -m755

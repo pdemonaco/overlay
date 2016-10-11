@@ -1,4 +1,4 @@
-#!/sbin/runscript
+#!/sbin/openrc-run
 # Simple transcription of the crashplan systemd init script
 # Note that this script can be found in /opt/crashplan/bin/CrashPlanEngine
 # in typical installs
@@ -74,13 +74,15 @@ start() {
     ebegin "Starting ${SVCNAME}"
    
     checkconfig || eend 1
-    
+
+    # Start the crashplan process - note that we cannot double quote the
+    # server options as they are then incorrectly parsed by java
     start-stop-daemon --pidfile "${CRASHPLAN_PIDFILE}" \
         --make-pidfile --chdir "${CRASHPLAN_DIR}" \
         --stdout "$CRASHPLAN_DIR/log/engine_output.log" \
         --stderr "$CRASHPLAN_DIR/log/engine_error.log" \
         --nice 19 --start --background --progress \
-        --exec "$JAVACOMMON" -- "${SRV_JAVA_OPTS}" -classpath \
+        --exec "${JAVACOMMON}" -- ${SRV_JAVA_OPTS} -classpath \
         "${CRASHPLAN_FULL_CP}" "${CRASHPLAN_SERVICE}"
 
     eend $?

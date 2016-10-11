@@ -53,15 +53,10 @@ src_unpack() {
 	 gzip -d -c "${WORKDIR}/${PN}-install/${APP_BASENAME}_${PV}.cpi" | \
 		cpio -i --no-preserve-owner || die "failed to extract cpi file!"
 
-	 mv "${WORKDIR}/${PN}" "${WORKDIR}/${P}"
+	 mv "${WORKDIR}/${PN}" "${S}"
 }
 
 src_install() {
-
-	local basename="CrashPlan"
-
-	cd "${WORKDIR}/${P}"
-
 	# Store the variables which the normal crashplan installer expects
 	# It's not clear whether these are actually necessary for us
 	local VARS="install.vars"
@@ -89,23 +84,19 @@ src_install() {
 	fi
 
 	local dest="/opt/${PN}"
-	local src="${WORKDIR}/${P}"
+	local tdest="${D}/opt/${PN}"
 
 	# Copy in the main application
-	insinto "${dest}"
 	dodir "${dest}" || die "Failed to make ${dest}"
-	local ins_files=$(ls "${src}")
+	local ins_files=$(ls "${S}")
 	# TODO - fix the fucking permissions on this shit
 	for file in $ins_files; do
-		doins -r "${src}/${file}" || die "Failed to copy install files into target"
+		cp -pPR "${S}/${file}" "${tdest}" || die "Failed to copy install files into target"
 	done
 
-	# Create the log directory
-	rmdir ${src}/log
-	diropts -m777
-	dodir ${dest}/log
-
 	# Install the various script files
+	local basename="CrashPlan"
+
 	insopts -m755
 	insinto "${dest}/bin"
 	doins "${WORKDIR}/${PN}-install/scripts/${basename}Engine" || die

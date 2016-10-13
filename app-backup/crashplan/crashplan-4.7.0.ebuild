@@ -50,10 +50,10 @@ src_unpack() {
 	esac
 
 	# Attempt to unpack that weird CPI file
-	 gzip -d -c "${WORKDIR}/${PN}-install/${APP_BASENAME}_${PV}.cpi" | \
+	gzip -d -c "${WORKDIR}/${PN}-install/${APP_BASENAME}_${PV}.cpi" | \
 		cpio -i --no-preserve-owner || die "failed to extract cpi file!"
 
-	 mv "${WORKDIR}/${PN}" "${S}"
+	mv "${WORKDIR}/${PN}" "${S}"
 }
 
 src_install() {
@@ -89,10 +89,12 @@ src_install() {
 	# Copy in the main application
 	dodir "${dest}" || die "Failed to make ${dest}"
 	local ins_files=$(ls "${S}")
-	# TODO - fix the fucking permissions on this shit
 	for file in $ins_files; do
 		cp -pPR "${S}/${file}" "${tdest}" || die "Failed to copy install files into target"
 	done
+
+	# Set the appropriate permissions on the log subdirectory
+	chmod 777 "${tdest}/log"
 
 	# Install the various script files
 	local basename="CrashPlan"
@@ -105,7 +107,8 @@ src_install() {
 	doins "${WORKDIR}/${PN}-install/scripts/run.conf" || die
 
 	# Create the init script
-	doinitd "${FILESDIR}/${PN}" || die
+	cp -pP "${FILESDIR}/${PF}" "${WORKDIR}/${PN}"
+	doinitd "${WORKDIR}/${PN}" || die
 
 	# Create a shortcut for the desktop app
 	dosym "${dest}/bin/${basename}Desktop" "/usr/bin/${PN}" || die

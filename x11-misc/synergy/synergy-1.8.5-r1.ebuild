@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -6,10 +6,10 @@ EAPI=5
 inherit eutils flag-o-matic gnome2-utils cmake-utils qt4-r2
 
 DESCRIPTION="Lets you easily share a single mouse and keyboard between multiple computers"
-HOMEPAGE="http://synergy-project.org/ https://github.com/synergy/synergy"
+HOMEPAGE="http://synergy-project.org/ https://github.com/symless/synergy"
 SRC_URI="
-	https://github.com/${PN}/${PN}/archive/v${PV}-stable.tar.gz -> ${P}.tar.gz
-	https://dev.gentoo.org/~hasufell/distfiles/${PN}.png
+	https://github.com/symless/${PN}/archive/v${PV}-stable.tar.gz -> ${P}.tar.gz
+	https://dev.gentoo.org/~jer/${PN}.png
 "
 
 LICENSE="GPL-2"
@@ -22,6 +22,7 @@ S=${WORKDIR}/${P}-stable
 COMMON_DEPEND="
 	!libressl? ( dev-libs/openssl:* )
 	libressl? ( dev-libs/libressl )
+	net-misc/curl
 	x11-libs/libICE
 	x11-libs/libSM
 	x11-libs/libX11
@@ -52,8 +53,9 @@ RDEPEND="
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.4.16_p1969-pthread.patch
-	"${FILESDIR}"/${PN}-1.4.17_p2055-test.patch
 	"${FILESDIR}"/${PN}-1.7.5-gentoo.patch
+	"${FILESDIR}"/${PN}-1.8.1-internal-gmock-gtest.patch
+	"${FILESDIR}"/${PN}-1.8.1-gtest.patch
 )
 
 src_prepare() {
@@ -62,8 +64,10 @@ src_prepare() {
 
 src_configure() {
 	local mycmakeargs=(
-		"$(cmake-utils_use_with test GENTOO_TEST)"
+		"$(usex test -DWITH_GENTOO_TEST=1 -DWITH_GENTOO_TEST=0)"
 	)
+	append-cxxflags ${mycmakeargs}
+
 	cmake-utils_src_configure
 
 	if use qt4 ; then
@@ -90,18 +94,19 @@ src_test() {
 }
 
 src_install () {
-	dobin bin/${PN}{c,d,s} bin/syntool
+	dobin bin/${PN}{c,s} bin/syntool
+
+	exeinto /usr/$(get_libdir)/${PN}/plugins
+	doexe bin/plugins/libns.so
 
 	if use qt4 ; then
-		dobin bin/synergy
+		newbin bin/${PN} qsynergy
 		newicon -s 256 "${DISTDIR}"/${PN}.png q${PN}.png
 		make_desktop_entry q${PN} ${PN/s/S} q${PN} Utility;
 	fi
 
 	insinto /etc
 	newins doc/synergy.conf.example synergy.conf
-
-	dolib.so lib/libns.so
 
 	newman doc/${PN}c.man ${PN}c.1
 	newman doc/${PN}s.man ${PN}s.1

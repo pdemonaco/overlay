@@ -10,10 +10,10 @@ HOMEPAGE="https://www.crashplan.com"
 # Main package & internal JRE
 CODE42_DOWNLADS="https://download.code42.com/installs"
 SRC_URI="${CODE42_DOWNLADS}/linux/install/CrashPlan/CrashPlan_${PV}_Linux.tgz -> ${P}.tgz
-	amd64?	( ${CODE42_DOWNLADS}/proserver/jre/jre-7-linux-x64.tgz -> ${P}-jre-x64.tgz )
-	x86?	( ${CODE42_DOWNLADS}/proserver/jre/jre-7-linux-i586.tgz -> ${P}-jre-x86.tgz )"
-PJRE_X64="${P}-jre-x64.tgz"
-PJRE_X86="${P}-jre-x86.tgz"
+	amd64?	( ${CODE42_DOWNLADS}/proserver/jre/jre-8-linux-x64.tgz -> ${P}-jre-8-x64.tgz )
+	x86?	( ${CODE42_DOWNLADS}/proserver/jre/jre-8-linux-i586.tgz -> ${P}-jre-8-x86.tgz )"
+PJRE_X64="${P}-jre-8-x64.tgz"
+PJRE_X86="${P}-jre-8-x86.tgz"
 
 LICENSE="Code42-EULA"
 SLOT="0"

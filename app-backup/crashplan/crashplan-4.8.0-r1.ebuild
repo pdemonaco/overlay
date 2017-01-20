@@ -39,20 +39,27 @@ src_unpack() {
 	mkdir "${WORKDIR}/${PN}"
 	cd "${WORKDIR}/${PN}"
 
-	# Extract the appropriate JRE 
-	case ${ARCH} in
-		amd64)
-			unpack ${PJRE_X64} || die "couldn't unpack ${PJRE_X64}"
-			;;
-		x86)
-			unpack ${PJRE_X86} || die "couldn't unpack ${PJRE_X86}"
-			;;
-	esac
-
 	# Attempt to unpack that weird CPI file
 	gzip -d -c "${WORKDIR}/${PN}-install/${APP_BASENAME}_${PV}.cpi" | \
 		cpio -i --no-preserve-owner || die "failed to extract cpi file!"
 
+	# Attempt to locate and unpack the included JRE
+	local JRE_TAR=$(find . -type f -name "jre*.tgz")
+	if ! [ -z "${JRE_TAR}" ]; then
+		unpack "${JRE_TAR}" || die "couldn't unpack ${JRE_TAR}"
+	# Extract the appropriate JRE if it was not bundled
+	else
+		case ${ARCH} in
+			amd64)
+				unpack ${PJRE_X64} || die "couldn't unpack ${PJRE_X64}"
+				;;
+			x86)
+				unpack ${PJRE_X86} || die "couldn't unpack ${PJRE_X86}"
+				;;
+		esac
+	fi
+
+	# Deploy the files
 	mv "${WORKDIR}/${PN}" "${S}"
 }
 
@@ -95,6 +102,9 @@ src_install() {
 
 	# Set the appropriate permissions on the log subdirectory
 	chmod 777 "${tdest}/log"
+
+	# Ensure root actually owns everything in the temporary directory
+	fowners -R root:root "${tdest}"
 
 	# Install the various script files
 	local basename="CrashPlan"

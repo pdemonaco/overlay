@@ -43,21 +43,15 @@ src_unpack() {
 	gzip -d -c "${WORKDIR}/${PN}-install/${APP_BASENAME}_${PV}.cpi" | \
 		cpio -i --no-preserve-owner || die "failed to extract cpi file!"
 
-	# Attempt to locate and unpack the included JRE
-	local JRE_TAR=$(find . -type f -name "jre*.tgz")
-	if ! [ -z "${JRE_TAR}" ]; then
-		unpack "${JRE_TAR}" || die "couldn't unpack ${JRE_TAR}"
-	# Extract the appropriate JRE if it was not bundled
-	else
-		case ${ARCH} in
-			amd64)
-				unpack ${PJRE_X64} || die "couldn't unpack ${PJRE_X64}"
-				;;
-			x86)
-				unpack ${PJRE_X86} || die "couldn't unpack ${PJRE_X86}"
-				;;
-		esac
-	fi
+	# Extract the appropriate JRE
+	case ${ARCH} in
+		amd64)
+			unpack ${PJRE_X64} || die "couldn't unpack ${PJRE_X64}"
+			;;
+		x86)
+			unpack ${PJRE_X86} || die "couldn't unpack ${PJRE_X86}"
+			;;
+	esac
 
 	# Deploy the files
 	mv "${WORKDIR}/${PN}" "${S}"
@@ -91,7 +85,7 @@ src_install() {
 	fi
 	
 	# Ensure root actually owns everything in the temporary directory
-	fowners -R root:root "${S}"
+	chown -R portage:portage "${S}"
 
 	local dest="/opt/${PN}"
 	local tdest="${D}/opt/${PN}"

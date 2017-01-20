@@ -89,6 +89,9 @@ src_install() {
 		sed -i "s|<backupConfig>|<backupConfig>\n\t\t\t<manifestPath>${MANIFESTDIR}</manifestPath>|g" \
 			conf/default.service.xml
 	fi
+	
+	# Ensure root actually owns everything in the temporary directory
+	fowners -R root:root "${S}"
 
 	local dest="/opt/${PN}"
 	local tdest="${D}/opt/${PN}"
@@ -102,9 +105,6 @@ src_install() {
 
 	# Set the appropriate permissions on the log subdirectory
 	chmod 777 "${tdest}/log"
-
-	# Ensure root actually owns everything in the temporary directory
-	fowners -R root:root "${tdest}"
 
 	# Install the various script files
 	local basename="CrashPlan"

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<repositories version="1.0">
+<repo priority="50" status="unofficial">
+	<name>pdemonaco-overlay</name>
+	<description>My personal development overlay.</description>
+    <homepage>https://github.com/pdemonaco/overlay</homepage>
+	<owner>
+		<email>phil.demonaco@gmail.com</email>
+		<name>Phil DeMonaco</name>
+	</owner>
+	<source type="git">git://github.com/pdemonaco/overlay.git</source>
+	<feed>https://github.com/pdemonaco/overlay/commits/master.atom</feed>
+</repo>
+</repositories>

@@ -31,7 +31,7 @@ RDEPEND="${DEPEND}"
 
 src_configure()
 {
-	cd "${WORKDIR}/${P}" || dieO
+	cd "${WORKDIR}/${P}" || die
 	eqmake5 || die
 }
 

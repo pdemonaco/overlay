@@ -40,21 +40,11 @@ src_unpack() {
 src_configure()
 {
 	cd "${WORKDIR}/${P}" || die
-	eqmake5 DESTDIR="${D}" || die
+	eqmake5 || die
 }
 
 src_install()
 {
 	cd "${WORKDIR}/${P}" || die
-
-	# Install the binary
-	dobin "${WORKDIR}/${P}/${MIXED_CASE}"
-
-	# Icon
-	insinto "/usr/share/pixmaps"
-	doins "${WORKDIR}/${P}/desktop/${MIXED_CASE}.png"
-
-	# Desktop shortcut
-	insinto "/usr/share/applications"
-	doins "${WORKDIR}/${P}/desktop/${MIXED_CASE}.desktop"
+	emake INSTALL_ROOT="${D}" install || die
 }

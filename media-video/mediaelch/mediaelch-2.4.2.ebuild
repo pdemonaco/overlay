@@ -31,9 +31,13 @@ DEPEND="dev-qt/qtsql:5
 		dev-qt/qtscript:5"
 RDEPEND="${DEPEND}"
 
+src_unpack() {
+	unpack "${P}.tar.gz"
+	mv "${WORKDIR}/${MIXED_CASE}-${PV}" "${WORKDIR}/${P}" || die
+}
+
 src_configure()
 {
-	mv "${WORKDIR}/${MIXED_CASE}-${PV}" "${WORKDIR}/${P}" || die
 	cd "${WORKDIR}/${P}" || die
 	eqmake5 || die
 }

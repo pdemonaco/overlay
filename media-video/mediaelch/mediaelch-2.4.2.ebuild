@@ -14,6 +14,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
+MIXED_CASE="MediaElch"
+
 DEPEND="dev-qt/qtsql:5
 		dev-qt/qtscript:5
 		dev-qt/qtquickcontrols:5
@@ -31,6 +33,7 @@ RDEPEND="${DEPEND}"
 
 src_configure()
 {
+	mv "${WORKDIR}/${MIXED_CASE}-${PV}" "${WORKDIR}/${P}" || die
 	cd "${WORKDIR}/${P}" || die
 	eqmake5 || die
 }

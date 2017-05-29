@@ -46,5 +46,5 @@ src_configure()
 src_install()
 {
 	cd "${WORKDIR}/${P}" || die
-	INSTALL_ROOT="${D}" einstall || die
+	emake DESTDIR="${D}" install || die
 }

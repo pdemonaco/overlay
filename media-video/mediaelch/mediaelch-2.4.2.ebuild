@@ -19,6 +19,7 @@ MIXED_CASE="MediaElch"
 DEPEND="dev-qt/qtsql:5
 		dev-qt/qtscript:5
 		dev-qt/qtquickcontrols:5
+		dev-qt/qtxml:5
 		dev-qt/qtxmlpatterns:5
 		dev-qt/qtcore:5
 		dev-qt/qtgui:5

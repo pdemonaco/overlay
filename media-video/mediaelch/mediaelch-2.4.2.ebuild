@@ -46,5 +46,15 @@ src_configure()
 src_install()
 {
 	cd "${WORKDIR}/${P}" || die
-	emake DESTDIR="${D}" install || die
+
+	# Install the binary
+	dobin "${WORKDIR}/${P}/${MIXED_CASE}"
+
+	# Icon
+	insinto "/usr/share/pixmaps"
+	doins "${WORKDIR}/${P}/desktop/${MIXED_CASE}.png"
+
+	# Desktop shortcut
+	insinto "/usr/share/applications"
+	doins "${WORKDIR}/${P}/desktop/${MIXED_CASE}.desktop"
 }

@@ -40,7 +40,7 @@ src_unpack() {
 src_configure()
 {
 	cd "${WORKDIR}/${P}" || die
-	eqmake5 || die
+	eqmake5 DESTDIR="${D}" || die
 }
 
 src_install()

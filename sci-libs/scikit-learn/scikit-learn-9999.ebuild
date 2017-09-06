@@ -8,12 +8,9 @@ PYTHON_COMPAT=( python2_7 python3_{4,5,6} )
 inherit distutils-r1 flag-o-matic git-r3
 
 # Necessary rename to match actual repo/user
-MYPN="${PN/scikits_/scikit-}"
-USER="${MYPN}"
-REPO="${MYPN}"
+USER="${PN}"
+REPO="${PN}"
 EGIT_REPO_URI="git://github.com/${USER}/${REPO}.git"
-
-MYP="${MYPN}-${PV}"
 
 DESCRIPTION="Python modules for machine learning and data mining"
 HOMEPAGE="http://scikit-learn.org"
@@ -45,8 +42,6 @@ DEPEND="
 	virtual/blas:=
 	virtual/cblas:=
 "
-
-S="${WORKDIR}/${MYP}"
 
 PATCHES=( "${FILESDIR}"/${PN}-0.18.1-system-cblas.patch )
 

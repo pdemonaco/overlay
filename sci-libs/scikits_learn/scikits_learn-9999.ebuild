@@ -11,7 +11,7 @@ inherit distutils-r1 flag-o-matic git-r3
 MYPN="${PN/scikits_/scikit-}"
 USER="${MYPN}"
 REPO="${MYPN}"
-EGIT_REPO_URI="git://github.com/${USER}/${PN}.git"
+EGIT_REPO_URI="git://github.com/${USER}/${REPO}.git"
 
 MYP="${MYPN}-${PV}"
 

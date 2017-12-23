@@ -24,7 +24,7 @@ src_compile() {
 	pushd .. || die
 	mv "${P}" "${P}_temp" || die
 	mkdir -p "${P}/${EGO_PN}" || die
-	mv "${P}_temp/*" "${P}/${EGO_PN}/" || die
+	mv "${P}_temp" "${P}/${EGO_PN}" || die
 	popd || die
 
 	GOPATH="${S}" go install "${EGO_PN}/..." || die

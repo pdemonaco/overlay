@@ -22,9 +22,9 @@ RDEPEND="${DEPEND}"
 src_compile() {
 	# Move the contents into this subdirectory
 	pushd .. || die
-	mv "${P}" "${P}_temp" || die
+	mv "${P}" "${PN}" || die
 	mkdir -p "${P}/${EGO_PN}" || die
-	mv "${P}_temp" "${P}/${EGO_PN}" || die
+	mv "${PN}" "${P}/${EGO_PN}" || die
 	popd || die
 
 	GOPATH="${S}" go install "${EGO_PN}/..." || die

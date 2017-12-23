@@ -27,14 +27,21 @@ DEPEND=">=dev-lang/go-1.8"
 RDEPEND="${DEPEND}"
 
 src_unpack() {
-	mkdir -p "${S}"
+	# Create the source directory and move into it
+	mkdir -p "${S}" || die
+	pushd "${S}" || die
+
+	# Copy the binary over from the distfiles directory
 	if use x86; then
-		cp "/usr/portage/distfiles/${BIN_X86}" "${BASE_PN}"
+		cp "/usr/portage/distfiles/${BIN_X86}" "${PN}" || die
 	elif use amd64; then
-		cp "/usr/portage/distfiles/${BIN_X64}" "${BASE_PN}"
+		cp "/usr/portage/distfiles/${BIN_X64}" "${PN}" || die
 	fi
+
+	# Get back out of there
+	popd || die
 }
 
 src_install() {
-	dobin "${BASE_PN}"
+	dobin "${PN}"
 }

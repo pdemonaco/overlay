@@ -20,7 +20,13 @@ DEPEND=">=dev-lang/go-1.8"
 RDEPEND="${DEPEND}"
 
 src_compile() {
-	default
+	# Move the contents into this subdirectory
+	pushd .. || die
+	mv "${P}" "${P}_temp" || die
+	mkdir -p "${P}/${EGO_PN}" || die
+	mv "${P}_temp/*" "${P}/${EGO_PN}/" || die
+	popd || die
+
 	GOPATH="${S}" go install "${EGO_PN}/..." || die
 }
 

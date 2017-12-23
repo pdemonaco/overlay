@@ -27,11 +27,14 @@ DEPEND=">=dev-lang/go-1.8"
 RDEPEND="${DEPEND}"
 
 src_install() {
+	mkdir -p "${S}"
 	if use x86; then
-		mv "${BIN_X86}" "${BASE_PN}"
+		cp "/usr/portage/distfiles/${BIN_X86}" "${BASE_PN}"
 	elif use amd64; then
-		mv "${BIN_X64}" "${BASE_PN}"
+		mv "/usr/portage/distfiles/${BIN_X64}" "${BASE_PN}"
 	fi
+}
 
+src_install() {
 	dobin "${BASE_PN}"
 }

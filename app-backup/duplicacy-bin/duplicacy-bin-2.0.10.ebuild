@@ -26,7 +26,7 @@ IUSE=""
 DEPEND=">=dev-lang/go-1.8"
 RDEPEND="${DEPEND}"
 
-src_install() {
+src_unpack() {
 	mkdir -p "${S}"
 	if use x86; then
 		cp "/usr/portage/distfiles/${BIN_X86}" "${BASE_PN}"

@@ -31,7 +31,7 @@ src_unpack() {
 	if use x86; then
 		cp "/usr/portage/distfiles/${BIN_X86}" "${BASE_PN}"
 	elif use amd64; then
-		mv "/usr/portage/distfiles/${BIN_X64}" "${BASE_PN}"
+		cp "/usr/portage/distfiles/${BIN_X64}" "${BASE_PN}"
 	fi
 }
 

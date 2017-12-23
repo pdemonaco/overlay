@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>pdemon@gmail.com</email>
+	</maintainer>
+	<longdescription lang="en">
+		Duplicacy is a backup utility developed by 
+	</longdescription>
+	<upstream>
+		<remote-id type="github">gilbertchen/duplicacy</remote-id>
+	</upstream>
+</pkgmetadata>

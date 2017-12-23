@@ -3,7 +3,8 @@
 
 EAPI=6
 
-EGO_PN="github.com/gilbertchen/${PN}"
+EGO_ROOT="github.com/gilbertchen"
+EGO_PN="${EGO_ROOT}/${PN}"
 EGITHUB_TAG="${PV}"
 inherit golang-build
 
@@ -23,8 +24,8 @@ src_compile() {
 	# Move the contents into this subdirectory
 	pushd .. || die
 	mv "${P}" "${PN}" || die
-	mkdir -p "${P}/${EGO_PN}" || die
-	mv "${PN}" "${P}/${EGO_PN}" || die
+	mkdir -p "${P}/${EGO_ROOT}" || die
+	mv "${PN}" "${P}/${EGO_ROOT}" || die
 	popd || die
 
 	GOPATH="${S}" go install "${EGO_PN}/..." || die

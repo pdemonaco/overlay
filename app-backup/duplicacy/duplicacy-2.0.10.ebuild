@@ -21,7 +21,7 @@ RDEPEND="${DEPEND}"
 
 src_compile() {
 	default
-	GOPATH="${S}" go install "github.com/${EGO_PN}/..." || die
+	GOPATH="${S}" go install "${EGO_PN}/..." || die
 }
 
 src_install() {

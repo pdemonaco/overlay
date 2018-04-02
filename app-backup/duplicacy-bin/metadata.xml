@@ -5,9 +5,10 @@
 		<email>pdemon@gmail.com</email>
 	</maintainer>
 	<longdescription lang="en">
-		Duplicacy is a backup utility developed by 
+		Duplicacy is a backup utility developed by Gilbert Chen.
 	</longdescription>
 	<upstream>
+		<doc lang="en">https://github.com/gilbertchen/duplicacy/wiki</doc>
 		<remote-id type="github">gilbertchen/duplicacy</remote-id>
 	</upstream>
 </pkgmetadata>

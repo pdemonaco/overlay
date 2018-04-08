@@ -41,7 +41,7 @@ src_install() {
 	insinto "${TARGET_DIR}"
 
 	# Install the data directory and the config file
-	doins -r data || die 
+	doins -r data || die
 	doins config-path.cfg || die
 
 	# Install the binary as a binary

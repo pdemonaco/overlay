@@ -27,7 +27,7 @@ SERVICE_GROUP="${SERVICE_USER}"
 
 pkg_setup() {
 	enewgroup "${SERVICE_GROUP}"
-	enewuser "${SERVICE_USER}" -1 -1 -1 "${SERVICE_GROUP}"
+	enewuser "${SERVICE_USER}" -1 -1 "${TARGET_DIR}" "${SERVICE_GROUP}"
 }
 
 src_unpack() {

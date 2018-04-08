@@ -68,7 +68,7 @@ src_install() {
 	diropts -o "${SERVICE_USER}" -g "${SERVICE_GROUP}" -m 0775
 	dodir /var/log/factorio || die
 	keepdir /var/log/factorio || die
-	
+
 	# Save directory
 	diropts -o "${SERVICE_USER}" -g "${SERVICE_GROUP}" -m 0755
 	dodir "${TARGET_DIR}/saves" || die

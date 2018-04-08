@@ -54,7 +54,7 @@ src_install() {
 	newconfd "${FILESDIR}/conf_${PVR}" "${PN}" || die
 
 	# Create the default config files
-	diropts -m 0755
+	diropts -o root -g "${SERVICE_GROUP}" -m 0755
 	dodir /etc/factorio || die
 
 	insinto /etc/factorio
@@ -62,8 +62,9 @@ src_install() {
 	newins data/server-settings.example.json server-settings.json || die
 
 	# Log directory
-	diropts -m 0775
+	diropts -o "${SERVICE_USER}" -g "${SERVICE_GROUP}" -m 0775
 	dodir /var/log/factorio || die
+	keepdir /var/log/factorio || die
 }
 
 pkg_postinst() {

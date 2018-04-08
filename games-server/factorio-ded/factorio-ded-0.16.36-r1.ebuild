@@ -18,7 +18,8 @@ KEYWORDS="~amd64"
 IUSE=""
 
 DEPEND=">=sys-libs/glibc-2.18"
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND}
+	app-shells/bash"
 
 TARGET_DIR="/opt/factorio"
 
@@ -60,11 +61,18 @@ src_install() {
 	insinto /etc/factorio
 	insopts -o root -g "${SERVICE_GROUP}" -m 0644
 	newins data/server-settings.example.json server-settings.json || die
+	newins data/map-settings.example.json map-settings.json || die
+	newins data/map-gen-settings.example.json map-gen-settings.json || die
 
 	# Log directory
 	diropts -o "${SERVICE_USER}" -g "${SERVICE_GROUP}" -m 0775
 	dodir /var/log/factorio || die
 	keepdir /var/log/factorio || die
+	
+	# Save directory
+	diropts -o "${SERVICE_USER}" -g "${SERVICE_GROUP}" -m 0755
+	dodir "${TARGET_DIR}/saves" || die
+	keepdir "${TARGET_DIR}/saves" || die
 }
 
 pkg_postinst() {
@@ -74,4 +82,11 @@ pkg_postinst() {
 	einfo "Please read the multiplayer guide at"
 	einfo "https://wiki.factorio.com/Multiplayer#Setting_up_a_Linux_Factorio_server"
 	einfo "for further details regarding setup."
+	einfo
+	einfo "To start the service run the following:"
+	einfo "		eselect rc start ${PN}"
+	einfo
+	einfo "Also, note that it may be desirable to add this service to the"
+	einfo "default runlevel: "
+	einfo "		eselect rc add ${PN} default"
 }

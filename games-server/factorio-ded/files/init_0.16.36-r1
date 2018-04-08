@@ -1,11 +1,13 @@
 #!/sbin/openrc-run
 #---- openrc-run Constants-----------------------------------------------------
-description="Starts a dedicated Factorio server"
+description="Starts a dedicated Factorio server."
 pidfile="/var/run/${RC_SVCNAME}.pid"
 command="/opt/factorio/bin/x64/factorio"
 command_args="${FACT_OPTS}"
 command_user="${FACT_USER:-factorio}:${FACT_GROUP:-factorio}"
 extra_commands="gen_new_save"
+description_gen_new_save="Generate a new Factorio save. This should run \
+automatically on the first execution."
 
 #---- openrc-run Constants-----------------------------------------------------
 factorio_dir="/opt/factorio"
@@ -29,13 +31,13 @@ start_pre() {
 }
 
 gen_new_save() {
-        timestamp=$(/bin/date +%Y%m%d_%H%M%S_%N)
-        save_name="factorio-ded_${TIMESTAMP}"
+        timestamp=$(date +%Y%m%d_%H%M%S_%N)
+        save_name="factorio-ded_${timestamp}"
 
         ebegin "Generating new save: \'${save_name}\'"
 
         /bin/su -s /bin/bash -c \
-                "${command} --create ${save_name} --map-settings
+                "${command} --create ${save_dir}/${save_name} --map-settings \
                 ${FACT_MAP_SETTINGS} --map-gen-settings ${FACT_MAP_GEN}" \
                 "${FACT_USER}" 
 }

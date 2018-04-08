@@ -1,0 +1,27 @@
+# conf.d file for Factorio
+# 
+# Further details about the configuration of a headless factorio server can be
+# found on the factorio wiki. Specifically, the page linked below discusses the
+# setup of a headless server on which this package was based.
+#
+# https://wiki.factorio.com/Multiplayer#Setting_up_a_Linux_Factorio_server
+
+# Default port as described on the wiki.
+FACT_PORT="34197"
+
+# Path to the headless server settings file. There are some sane defaults in
+# set, check the file out to be sure.
+FACT_SERV_SETTINGS="/etc/factorio/server-settings.json"
+
+# The console log file path. Let's get it into the default log directory so
+# things make sense.
+FACT_CONSLOG="/var/log/factorio/factorio-console.log"
+
+# Factorio shouldn't be run as root to ensure system safety. The following user
+# and group will be utilized to control the system.
+FACT_USER="factorio"
+FACT_GROUP="factorio"
+
+# Arguments used when starting the factorio server
+FACT_OPTS="--port ${FACT_PORT} --console-log ${FACT_CONSLOG} \
+        --start-server-load-latest --server-settings ${FACT_SERV_SETTINGS}"

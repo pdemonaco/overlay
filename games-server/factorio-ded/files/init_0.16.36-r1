@@ -1,0 +1,15 @@
+#!/sbin/openrc-run
+#---- openrc-run Constants-----------------------------------------------------
+description="Starts a dedicated Factorio server"
+pidfile="/var/run/${RC_SVCNAME}.pid"
+command="/opt/factorio/bin/x64/factorio"
+command_args="${FACT_OPTS}"
+command_user="${FACT_USER:-factorio}:${FACT_GROUP:-factorio}"
+
+#---- Constants ---------------------------------------------------------------
+
+# Local filesystem and net are both needed to start
+depend() {
+        need localmount
+        use net
+}

@@ -1,0 +1,12 @@
+diff --git a/xen/arch/x86/Makefile b/xen/arch/x86/Makefile
+index 1ecf4ba..0a1e20b 100644
+--- a/xen/arch/x86/Makefile
++++ b/xen/arch/x86/Makefile
+@@ -158,6 +158,7 @@ EFI_LDFLAGS += --major-image-version=$(XEN_VERSION)
+ EFI_LDFLAGS += --minor-image-version=$(XEN_SUBVERSION)
+ EFI_LDFLAGS += --major-os-version=2 --minor-os-version=0
+ EFI_LDFLAGS += --major-subsystem-version=2 --minor-subsystem-version=0
++EFI_LDFLAGS += -b coff-x86-64
+ 
+ $(TARGET).efi: VIRT_BASE = 0x$(shell $(NM) efi/relocs-dummy.o | sed -n 's, A VIRT_START$$,,p')
+ $(TARGET).efi: ALT_BASE = 0x$(shell $(NM) efi/relocs-dummy.o | sed -n 's, A ALT_START$$,,p')

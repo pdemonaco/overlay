@@ -6,8 +6,9 @@ USE_RUBY="ruby23 ruby24"
 
 RUBY_FAKEGEM_RECIPE_TEST="rspec3"
 RUBY_FAKEGEM_TASK_DOC=""
-
 RUBY_FAKEGEM_EXTRADOC="README.md CHANGELOG.md"
+
+RUBY_FAKEGEM_GEMSPEC="${PN}.gemspec"
 
 inherit ruby-fakegem
 

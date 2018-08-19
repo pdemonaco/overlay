@@ -32,3 +32,8 @@ ruby_add_rdepend "
 ruby_add_bdepend "test? ( dev-ruby/archive-tar-minitar )"
 
 RDEPEND+=" dev-vcs/git"
+
+all_ruby_prepare() {
+	sed -i -e '/cri/ s/2\.6\.1/2.8.0/' \
+		${RUBY_FAKEGEM_GEMSPEC} || die
+}

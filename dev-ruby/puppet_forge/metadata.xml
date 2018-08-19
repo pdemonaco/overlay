@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="project">
+		<email>ruby@gentoo.org</email>
+	</maintainer>
+	<maintainer type="person">
+		<email>pdemon@gmail.com</email>
+	</maintainer>
+	<longdescription lang="en">
+		Tools that can be used to access Forge API information on Modules, 
+		Users, and Releases. As well as download, unpack, and install 
+		Releases to a directory
+	</longdescription>
+</pkgmetadata>

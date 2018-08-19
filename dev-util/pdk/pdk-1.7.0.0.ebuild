@@ -19,16 +19,25 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND="${DEPEND}"
 
+src_unpack() {
+	rpm_src_unpack ${A}
+
+	# Make the "source" directory and move everything in
+	mkdir "${S}"
+	mv "${WORKDIR}/opt" "${S}/"
+	mv "${WORKDIR}/usr" "${S}/"
+}
+
 src_install() {
 	# Ensure root actually owns everything in the temporary directory
-	chown -R portage:portage "${WORKDIR}"
+	chown -R portage:portage "${S}"
 
 	# Create the output directory
 	local dest="/opt/puppetlabs/${PN}"
 	dodir "${dest}" || die "Failed to create ${dest}"
 
 	# Copy the pdk subdirectory from it's temp output
-	cp -pPR "${WORKDIR}/opt/puppetlabs/pdk" "${D}/opt/puppetlabs/" || \
+	cp -pPR "${S}/opt/puppetlabs/pdk" "${D}/opt/puppetlabs/" || \
 		die "Failed to copy install files into target"
 
 	# Create a symlink for the pdk binary

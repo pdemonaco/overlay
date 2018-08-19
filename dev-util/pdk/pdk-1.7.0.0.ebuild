@@ -21,14 +21,14 @@ RDEPEND="${DEPEND}"
 
 src_install() {
 	# Ensure root actually owns everything in the temporary directory
-	chown -R portage:portage "${S}"
+	chown -R portage:portage "${WORKDIR}"
 
 	# Create the output directory
 	local dest="/opt/puppetlabs/${PN}"
 	dodir "${dest}" || die "Failed to create ${dest}"
 
 	# Copy the pdk subdirectory from it's temp output
-	cp -pPR "${S}/opt/puppetlabs/pdk" "${D}/opt/puppetlabs/" || \
+	cp -pPR "${WORKDIR}/opt/puppetlabs/pdk" "${D}/opt/puppetlabs/" || \
 		die "Failed to copy install files into target"
 
 	# Create a symlink for the pdk binary

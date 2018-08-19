@@ -29,3 +29,9 @@ ruby_add_bdepend "
 	=dev-ruby/semantic_puppet-1.0*
 	dev-ruby/archive-tar-minitar
 	dev-ruby/gettext-setup"
+
+all_ruby_prepare() {
+	sed -i -e '/faraday>/ s/0\.9\.0/0.12.2/' \
+		-e '/faraday_middleware/ s/0\.11\.0/0.13/' \
+		${RUBY_FAKEGEM_GEMSPEC} || die
+}

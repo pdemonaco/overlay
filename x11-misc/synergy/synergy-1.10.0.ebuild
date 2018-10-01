@@ -51,14 +51,6 @@ RDEPEND="
 
 DOCS=( ChangeLog doc/synergy.conf.example{,-advanced,-basic} )
 
-PATCHES=(
-	"${FILESDIR}"/${P}-pthread.patch
-	"${FILESDIR}"/${P}-internal-gmock-gtest.patch
-	"${FILESDIR}"/${P}-gtest.patch
-	"${FILESDIR}"/${P}-cmake-version.patch
-	"${FILESDIR}"/${P}-qt-5.11.patch
-)
-
 src_configure() {
 	local mycmakeargs=(
 		-DSYNERGY_BUILD_LEGACY_GUI=$(usex qt5)

@@ -75,12 +75,12 @@ src_compile() {
 	ego_pn_check
 	GOPATH="${WORKDIR}/${P}:$(get_golibdir_gopath)" \
 		GOCACHE="${T}/go-cache" \
-		go build -v -work -x \
+		go build -o "${T}/${PN}" -v -work -x \
 		-ldflags "-s -w -X ${CMD_VERSION} -X ${CMD_DATE}" \
-		-o "${PN}" "${EGO_PN}"
+		"${EGO_PN}"
 }
 
 src_install() {
 	einstalldocs
-	dobin "${S}/chezmoi"
+	dobin "${T}/chezmoi"
 }

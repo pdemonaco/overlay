@@ -26,7 +26,7 @@ EGO_VENDOR=( "github.com/BurntSushi/toml v0.3.1"
 	"github.com/zalando/go-keyring 6d81c293b3fbc8a9b1bcf4bc9c167c2e1d1f52cf"
 "golang.org/x/crypto c2843e01d9a2bc60bb26ad24e09734fdc2d9ec58 github.com/golang/crypto"
 	"golang.org/x/sys 10058d7d4faa7dd5ef860cbd31af00903076e7b8 github.com/golang/sys"
-	"gopkg.in/yaml.v2 v2.2.2" )
+	"gopkg.in/yaml.v2 v2.2.2 github.com/go-yaml/yaml" )
 
 EGO_PN="github.com/twpayne/${PN}"
 

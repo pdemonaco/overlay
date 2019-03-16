@@ -24,8 +24,8 @@ EGO_VENDOR=( "github.com/BurntSushi/toml v0.3.1"
 	"github.com/twpayne/go-vfs v1.0.5"
 	"github.com/twpayne/go-xdg 4973c34fec2fdad623049913f453d3bf3423e47f"
 	"github.com/zalando/go-keyring 6d81c293b3fbc8a9b1bcf4bc9c167c2e1d1f52cf"
-	"golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2"
-	"golang.org/x/sys v0.0.0-20190310054646-10058d7d4faa"
+"golang.org/x/crypto c2843e01d9a2bc60bb26ad24e09734fdc2d9ec58 github.com/golang/crypto"
+	"golang.org/x/sys 10058d7d4faa7dd5ef860cbd31af00903076e7b8 github.com/golang/sys"
 	"gopkg.in/yaml.v2 v2.2.2" )
 
 EGO_PN="github.com/twpayne/${PN}"

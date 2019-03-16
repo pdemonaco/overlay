@@ -51,7 +51,7 @@ DOCS=( "src/${EGO_PN}/README.md" )
 src_compile() {
 	CMD_VERSION="${EGO_PN}/cmd.version=${PV}"
 	CMD_DATE="${EGO_PN}/cmd.date=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-	LDFLAGS="-ldflags \"-s -w -X ${CMD_VERSION} -X ${CMD_DATE}\""
+	LDFLAGS="-ldflags \"-X ${CMD_VERSION} -X ${CMD_DATE}\""
 	EGO_BUILD_FLAGS="${LDFLAGS}-o ${PN}" \
 		EGO_PN="${EGO_PN}" \
 		golang-build_src_compile

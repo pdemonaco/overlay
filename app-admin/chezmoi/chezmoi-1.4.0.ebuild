@@ -54,7 +54,7 @@ src_compile() {
 	LDFLAGS="-ldflags \"-s -w -X ${CMD_VERSION} -X ${CMD_DATE}\""
 	EGO_BUILD_FLAGS="${LDFLAGS}-o ${PN}" \
 		EGO_PN="${EGO_PN}" \
-		golang-build_src-compile
+		golang-build_src_compile
 }
 
 src_install() {

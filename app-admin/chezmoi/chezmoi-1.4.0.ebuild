@@ -53,7 +53,7 @@ src_compile() {
 	CMD_DATE="${EGO_PN}/cmd.date=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 
 	ego_pn_check
-	set -- env GOPATH="${WORKDIR}/${P}:$(get_golibdir_gopath)" \
+	GOPATH="${WORKDIR}/${P}:$(get_golibdir_gopath)" \
 		GOCACHE="${T}/go-cache" \
 		go build -v -work -x -ldflags "-X ${CMD_VERSION} -X ${CMD_DATE}" \
 		-o "${PN}" "${EGO_PN}"

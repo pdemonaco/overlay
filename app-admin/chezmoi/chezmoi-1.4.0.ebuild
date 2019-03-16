@@ -70,7 +70,7 @@ DOCS=( "src/${EGO_PN}/README.md" )
 
 src_compile() {
 	CMD_VERSION="${EGO_PN}/cmd.version=${PV}"
-	CMD_DATE="${EGO_PN}/cmd.date={{ .Date }}"
+	CMD_DATE="${EGO_PN}/cmd.date=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 
 	ego_pn_check
 	GOPATH="${WORKDIR}/${P}:$(get_golibdir_gopath)" \

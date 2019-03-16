@@ -30,7 +30,7 @@ EGO_VENDOR=( "github.com/BurntSushi/toml v0.3.1"
 
 EGO_PN="github.com/twpayne/${PN}"
 
-inherit golang-vcs-snapshot golang-build
+inherit golang-vcs-snapshot
 
 DESCRIPTION="Manage your dotfiles across multiple machines, securely."
 HOMEPAGE="https://github.com/twpayne/chezmoi"
@@ -51,9 +51,12 @@ DOCS=( "src/${EGO_PN}/README.md" )
 src_compile() {
 	CMD_VERSION="${EGO_PN}/cmd.version=${PV}"
 	CMD_DATE="${EGO_PN}/cmd.date=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-	EGO_BUILD_FLAGS="-ldflags='-X ${CMD_VERSION} -X ${CMD_DATE}' -o ${PN}" \
-		EGO_PN="${EGO_PN}" \
-		golang-build_src_compile
+
+	ego_pn_check
+	set -- env GOPATH="${WORKDIR}/${P}:$(get_golibdir_gopath)" \
+		GOCACHE="${T}/go-cache" \
+		go build -v -work -x -ldflags "-X ${CMD_VERSION} -X ${CMD_DATE}" \
+		-o "${PN}" "${EGO_PN}"
 }
 
 src_install() {

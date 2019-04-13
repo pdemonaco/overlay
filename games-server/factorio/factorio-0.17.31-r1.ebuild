@@ -54,7 +54,7 @@ src_unpack() {
 	mv "${MOD_UPDATER}-${MOD_UPDATER_VER}/mod_updater.py" "${S}"
 
 	# Move the init script and config file
-	mv "${INIT_SCRIPTS}-${INIT_VER}/{conf, init}" "${S}"
+	mv ${INIT_SCRIPTS}-${INIT_VER}/{conf,init} "${S}"
 }
 
 src_install() {

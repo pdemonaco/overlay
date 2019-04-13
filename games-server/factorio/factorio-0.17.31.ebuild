@@ -1,28 +1,43 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
+
+PYTHON_COMPAT=(
+	python3_6 python3_7
+)
 
 inherit user
 
+# Utility Scripts
+GITHUB_URI='https://github.com/pdemonaco'
+INIT_SCRIPTS='factorio-init'
+MOD_UPDATER='factorio-mod-updater'
+MOD_UPDATER_VER="0.1.0"
+INIT_VER="0.2.0"
+
 DESCRIPTION="Headless server for Factorio."
 HOMEPAGE="https://www.factorio.com"
-
-BASE_URI="https://www.factorio.com/get-download/${PV}/headless/"
+BASE_URI="${HOMEPAGE}/get-download/${PV}/headless/"
 SRC_URI="${SRC_URI}
-	amd64? ( ${BASE_URI%/}/linux64 -> factorio_headless_x64_${PV}.tar.xz )"
+	amd64? ( ${BASE_URI%/}/linux64 -> factorio_headless_x64_${PV}.tar.xz )
+	${GITHUB_URI}/${MOD_UPDATER}/archive/${MOD_UPDATER_VER}.tar.gz -> \
+		${MOD_UPDATER}.${MOD_UPDATER_VER}.tar.gz
+	${GITHUB_URI}/${INIT_SCRIPTS}/archive/${INIT_VER}.tar.gz -> \
+		${INIT_SCRIPTS}.${INIT_VER}.tar.gz"
 
 LICENSE="freedist"
 SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
+RESTRICT="mirror"
 
 DEPEND=">=sys-libs/glibc-2.18"
 RDEPEND="${DEPEND}
-	app-shells/bash"
+	app-shells/bash
+	dev-python/requests"
 
 TARGET_DIR="/opt/factorio"
-
 SERVICE_USER="factorio"
 SERVICE_GROUP="${SERVICE_USER}"
 
@@ -34,6 +49,12 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	mv factorio "${S}"
+
+	# Capture the updater script
+	mv "${MOD_UPDATER}-${MOD_UPDATER_VER}/mod_updater.py" "${S}"
+
+	# Move the init script and config file
+	mv "${INIT_SCRIPTS}-${INIT_VER}/{conf, init}" "${S}"
 }
 
 src_install() {
@@ -50,9 +71,13 @@ src_install() {
 	exeinto "${TARGET_DIR}/bin/x64/"
 	doexe bin/x64/factorio || die
 
+	# Install the mod updater script
+	exeinto "${TARGET_DIR}/bin"
+	doexe mod_updater.py || die
+
 	# Create the init script & the config file
-	newinitd "${FILESDIR}/init_${PVR}" "${PN}" || die
-	newconfd "${FILESDIR}/conf_${PVR}" "${PN}" || die
+	newinitd init "${PN}" || die
+	newconfd conf "${PN}" || die
 
 	# Create the default config files
 	diropts -o root -g "${SERVICE_GROUP}" -m 0755

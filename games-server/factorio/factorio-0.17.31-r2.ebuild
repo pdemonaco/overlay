@@ -14,7 +14,7 @@ GITHUB_URI='https://github.com/pdemonaco'
 INIT_SCRIPTS='factorio-init'
 MOD_UPDATER='factorio-mod-updater'
 MOD_UPDATER_VER="0.1.0"
-INIT_VER="0.2.0"
+INIT_VER="0.2.1"
 
 DESCRIPTION="Headless server for Factorio."
 HOMEPAGE="https://www.factorio.com"

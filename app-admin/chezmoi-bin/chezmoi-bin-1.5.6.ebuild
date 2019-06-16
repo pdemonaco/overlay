@@ -46,5 +46,5 @@ src_unpack() {
 
 src_install() {
 	einstalldocs
-	dobin "${T}/${BASE_PN}" || die
+	dobin "${S}/${BASE_PN}" || die
 }

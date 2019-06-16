@@ -6,6 +6,7 @@ EAPI=7
 DESCRIPTION="Manage your dotfiles across multiple machines, securely."
 HOMEPAGE="https://github.com/twpayne/chezmoi"
 
+# Remove bin from the package name
 BASE_PN="${PN/-bin}"
 A_AMD64="${P}_amd64.tar.gz"
 A_X86="${P}_x86.tar.gz"
@@ -26,11 +27,15 @@ BDEPEND=""
 DOCS=( "docs" )
 
 src_unpack() {
+	# Create the source directory
+	mkdir -p "${S}" || die
+	pushd "${S}" || die
+
 	# Determine the correct source package
 	if use x86; then
-		$ARCHIVE="${A_X86}"
+		ARCHIVE="${A_X86}"
 	elif use amd64; then
-		$ARCHIVE="${A_AMD64}"
+		ARCHIVE="${A_AMD64}"
 	fi
 
 	# Unpack the archive if a matching one was found

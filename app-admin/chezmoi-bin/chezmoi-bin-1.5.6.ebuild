@@ -24,7 +24,7 @@ DEPEND="dev-vcs/git"
 RDEPEND="${DEPEND}"
 BDEPEND=""
 
-DOCS=( "docs" )
+DOCS=( "docs/*" )
 
 src_unpack() {
 	# Create the source directory

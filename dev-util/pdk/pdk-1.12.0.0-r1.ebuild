@@ -1,7 +1,7 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit rpm
 
@@ -17,7 +17,8 @@ IUSE=""
 RESTRICT="mirror"
 
 DEPEND=""
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND}
+	sys-libs/libselinux"
 
 src_unpack() {
 	rpm_src_unpack ${A}

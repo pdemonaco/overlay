@@ -7,8 +7,6 @@ PYTHON_COMPAT=(
 	python3_6 python3_7
 )
 
-inherit user
-
 # Utility Scripts
 GITHUB_URI='https://github.com/pdemonaco'
 INIT_SCRIPTS='factorio-init'
@@ -32,19 +30,14 @@ KEYWORDS="~amd64"
 IUSE=""
 RESTRICT="mirror"
 
-DEPEND=">=sys-libs/glibc-2.18"
+DEPEND=">=sys-libs/glibc-2.18
+	acct-user/factorio
+	acct-group/factorio"
 RDEPEND="${DEPEND}
 	app-shells/bash
 	dev-python/requests"
 
 TARGET_DIR="/opt/factorio"
-SERVICE_USER="factorio"
-SERVICE_GROUP="${SERVICE_USER}"
-
-pkg_setup() {
-	enewgroup "${SERVICE_GROUP}"
-	enewuser "${SERVICE_USER}" -1 -1 "${TARGET_DIR}" "${SERVICE_GROUP}"
-}
 
 src_unpack() {
 	unpack ${A}

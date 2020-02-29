@@ -38,6 +38,8 @@ RDEPEND="${DEPEND}
 	dev-python/requests"
 
 TARGET_DIR="/opt/factorio"
+SERVICE_USER="factorio"
+SERVICE_GROUP="${SERVICE_USER}"
 
 src_unpack() {
 	unpack ${A}

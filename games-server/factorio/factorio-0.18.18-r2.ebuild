@@ -11,7 +11,7 @@ PYTHON_COMPAT=(
 GITHUB_URI='https://github.com/pdemonaco'
 INIT_SCRIPTS='factorio-init'
 MOD_UPDATER='factorio-mod-updater'
-MOD_UPDATER_VER="0.2.1"
+MOD_UPDATER_VER="0.2.2"
 INIT_VER="0.2.1"
 
 DESCRIPTION="Headless server for Factorio."

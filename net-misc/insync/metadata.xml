@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>phil@demona.co</email>
+		<name>Phil DeMonaco</name>
+	</maintainer>
+	<longdescription lang="en">
+	</longdescription>
+	<upstream>
+		<maintainer>
+			<name>Insync Team</name>
+			<email>support@insynchq.com</email>
+		</maintainer>
+	</upstream>
+</pkgmetadata>

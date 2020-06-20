@@ -12,8 +12,7 @@ HOMEPAGE="https://github.com/twpayne/chezmoi"
 # cd $(mktemp -d)
 # git clone --depth=1 https://github.com/twpayne/chezmoi.git
 # cd chezmoi
-# go list -m all | sed -Ee 's/^(.+)$/"\1"\n"\1\/go.mod"/g' > ../versions
-#
+# sed -Ee 's/^(.+) h1:.+$/\t"\1"/g' go.sum > ../go.sum.out
 EGO_SUM=( "github.com/twpayne/chezmoi"
 	"github.com/twpayne/chezmoi/go.mod"
 	"cloud.google.com/go v0.46.3"

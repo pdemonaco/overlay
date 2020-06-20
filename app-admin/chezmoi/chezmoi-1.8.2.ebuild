@@ -8,7 +8,7 @@ inherit go-module
 DESCRIPTION="Manage your dotfiles across multiple machines, securely."
 HOMEPAGE="https://github.com/twpayne/chezmoi"
 
-# Building this list is very tedious. Helpful commands include
+# Building this list can be done by:
 # cd $(mktemp -d)
 # PV="1.8.2"
 # wget https://github.com/twpayne/chezmoi/archive/v${PV}.tar.gz

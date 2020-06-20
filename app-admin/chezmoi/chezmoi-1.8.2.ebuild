@@ -598,12 +598,8 @@ BDEPEND=">=dev-lang/go-1.12"
 DOCS=( "${S}/docs" )
 
 src_compile() {
-	CMD_VERSION="${SOURCE_PN}/cmd.version=${PV}"
-	CMD_DATE="${SOURCE_PN}/cmd.date=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-
-	go build -o "${T}/${PN}" -v -work -x \
-		-X main.version="${CMD_VERSION}" \
-		-X main.date="${DATE}" \
+	go build -o "${T}/${PN}" -v -work -x -ldflags \
+		"-X main.version=${PV} -X main.date=$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
 		|| die "compile failed"
 }
 

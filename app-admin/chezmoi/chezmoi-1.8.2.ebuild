@@ -595,22 +595,13 @@ DEPEND="dev-vcs/git"
 RDEPEND="${DEPEND}"
 BDEPEND=">=dev-lang/go-1.12"
 
-DOCS=(
-	"docs/README.md"
-	"docs/FAQ.md"
-	"docs/HOWTO.md"
-	"docs/QUICKSTART.md"
-	"docs/REFERENCE.md"
-	"docs/CHANGES.md"
-)
+DOCS=( "${S}/docs" )
 
 src_compile() {
 	CMD_VERSION="${SOURCE_PN}/cmd.version=${PV}"
 	CMD_DATE="${SOURCE_PN}/cmd.date=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 
-	go build -o "${T}/${PN}" -v -work -x \
-		-ldflags "-s -w -X ${CMD_VERSION} -X ${CMD_DATE}" \
-		"${SOURCE_PN}"
+	go build -o "${T}/${PN}" -v -work -x 
 }
 
 src_install() {

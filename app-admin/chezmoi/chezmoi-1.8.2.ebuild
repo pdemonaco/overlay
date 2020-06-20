@@ -3,6 +3,11 @@
 
 EAPI=7
 
+inherit go-module
+
+DESCRIPTION="Manage your dotfiles across multiple machines, securely."
+HOMEPAGE="https://github.com/twpayne/chezmoi"
+
 # Building this list is very tedious. Helpful commands include
 # cd $(mktemp -d)
 # git clone --depth=1 https://github.com/twpayne/chezmoi.git
@@ -248,11 +253,7 @@ EGO_SUM=( "cloud.google.com/go v0.46.3"
 
 EGO_PN="github.com/twpayne/${PN}"
 
-inherit go-module
 go-module_set_globals
-
-DESCRIPTION="Manage your dotfiles across multiple machines, securely."
-HOMEPAGE="https://github.com/twpayne/chezmoi"
 SRC_URI="https://${EGO_PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz
 	${EGO_VENDOR_URI}"
 
@@ -272,10 +273,7 @@ src_compile() {
 	CMD_VERSION="${EGO_PN}/cmd.version=${PV}"
 	CMD_DATE="${EGO_PN}/cmd.date=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 
-	ego_pn_check
-	GOPATH="${WORKDIR}/${P}:$(get_golibdir_gopath)" \
-		GOCACHE="${T}/go-cache" \
-		go build -o "${T}/${PN}" -v -work -x \
+	go build -o -v -work -x \
 		-ldflags "-s -w -X ${CMD_VERSION} -X ${CMD_DATE}" \
 		"${EGO_PN}"
 }

@@ -13,9 +13,7 @@ HOMEPAGE="https://github.com/twpayne/chezmoi"
 # git clone --depth=1 https://github.com/twpayne/chezmoi.git
 # cd chezmoi
 # sed -Ee 's/^(.+) h1:.+$/\t"\1"/g' go.sum > ../go.sum.out
-EGO_SUM=( "github.com/twpayne/chezmoi"
-	"github.com/twpayne/chezmoi/go.mod"
-	"cloud.google.com/go v0.46.3"
+EGO_SUM=(	"cloud.google.com/go v0.46.3"
 	"cloud.google.com/go v0.46.3/go.mod"
 	"cloud.google.com/go/bigquery v1.0.1"
 	"cloud.google.com/go/bigquery v1.0.1/go.mod"
@@ -483,11 +481,11 @@ EGO_SUM=( "github.com/twpayne/chezmoi"
 	"rsc.io/binaryregexp v0.2.0/go.mod"
 	)
 
-EGO_PN="github.com/twpayne/${PN}"
+SOURCE_PN="github.com/twpayne/${PN}"
 
 go-module_set_globals
-SRC_URI="https://${EGO_PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz
-	${EGO_VENDOR_URI}"
+SRC_URI="https://${SOURCE_PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz
+	${EGO_SUM_SRC_URI}"
 
 LICENSE="MIT"
 SLOT="0"
@@ -499,15 +497,15 @@ DEPEND="dev-vcs/git"
 RDEPEND="${DEPEND}"
 BDEPEND=">=dev-lang/go-1.12"
 
-DOCS=( "src/${EGO_PN}/README.md" )
+DOCS=( "src/${SOURCE_PN}/README.md" )
 
 src_compile() {
-	CMD_VERSION="${EGO_PN}/cmd.version=${PV}"
-	CMD_DATE="${EGO_PN}/cmd.date=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+	CMD_VERSION="${SOURCE_PN}/cmd.version=${PV}"
+	CMD_DATE="${SOURCE_PN}/cmd.date=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 
 	go build -o -v -work -x \
 		-ldflags "-s -w -X ${CMD_VERSION} -X ${CMD_DATE}" \
-		"${EGO_PN}"
+		"${SOURCE_PN}"
 }
 
 src_install() {

@@ -601,7 +601,7 @@ src_compile() {
 	CMD_VERSION="${SOURCE_PN}/cmd.version=${PV}"
 	CMD_DATE="${SOURCE_PN}/cmd.date=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 
-	go build -o "${T}/${PN}" -v -work -x 
+	go build -o "${T}/${PN}" -v -work -x
 }
 
 src_install() {

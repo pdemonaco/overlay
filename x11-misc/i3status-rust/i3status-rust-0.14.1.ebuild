@@ -107,8 +107,24 @@ SRC_URI="https://github.com/greshake/i3status-rust/archive/v${PV}.tar.gz -> ${P}
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
+IUSE="profile"
 
-DEPEND="sys-apps/dbus"
+DEPEND="sys-apps/dbus
+	profile? ( dev-util/google-perftools )"
 RDEPEND="${DEPEND}"
 BDEPEND=""
+
+src_configure() {
+	myfeatures=(
+		$(usex profile profiling '')
+	)
+}
+
+src_compile() {
+	cargo_src_compile ${myfeatures:+--features "${myfeatures[*]}"}
+}
+
+src_install() {
+	cargo_src_install ${myfeatures:+--features "${myfeatures[*]}"}
+	einstalldocs
+}

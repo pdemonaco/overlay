@@ -97,7 +97,7 @@ winapi-util-0.1.5
 winapi-x86_64-pc-windows-gnu-0.4.0
 "
 
-inherit cargo
+inherit cargo eutils
 
 DESCRIPTION="A feature-rich and resource-friendly replacement for i3status, written in Rust."
 HOMEPAGE="https://github.com/greshake/i3status-rust/"

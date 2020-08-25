@@ -101,13 +101,14 @@ inherit cargo
 
 DESCRIPTION="A feature-rich and resource-friendly replacement for i3status, written in Rust."
 HOMEPAGE="https://github.com/greshake/i3status-rust/"
-SRC_URI="$(cargo_crate_uris ${CRATES})"
+SRC_URI="https://github.com/greshake/i3status-rust/archive/v${PV}.tar.gz -> ${P}.tar.gz
+	$(cargo_crate_uris ${CRATES})"
 
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND=""
+DEPEND="sys-apps/dbus"
 RDEPEND="${DEPEND}"
 BDEPEND=""

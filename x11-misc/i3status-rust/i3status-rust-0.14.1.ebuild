@@ -122,6 +122,11 @@ DEPEND="sys-apps/dbus
 RDEPEND="${DEPEND}"
 BDEPEND=""
 
+src_unpack() {
+	cargo_src_unpack
+	mv "${S}/man" "${S}/man.bak" || die
+}
+
 src_configure() {
 	myfeatures=(
 		$(usex profile profiling '')
@@ -133,8 +138,6 @@ src_compile() {
 }
 
 src_install() {
-	rm "${S}/man/_postface.1"
-	rm "${S}/man/_preface.1"
-	rm "${S}/man/generate.sh"
+	doman "${S}/man.bak/i3status-rs.1"
 	cargo_src_install ${myfeatures:+--features "${myfeatures[*]}"}
 }

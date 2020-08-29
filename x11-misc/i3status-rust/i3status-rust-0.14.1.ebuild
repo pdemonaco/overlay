@@ -133,7 +133,8 @@ src_compile() {
 }
 
 src_install() {
-	rm "${S}/man/_*"
-	rm "${S}/man/*.sh"
+	rm "${S}/man/_postface.1"
+	rm "${S}/man/_preface.1"
+	rm "${S}/man/generate.sh"
 	cargo_src_install ${myfeatures:+--features "${myfeatures[*]}"}
 }

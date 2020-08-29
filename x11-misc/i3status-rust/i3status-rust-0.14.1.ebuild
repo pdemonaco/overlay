@@ -19,12 +19,14 @@ charset-0.1.2
 chrono-0.4.11
 chrono-tz-0.5.1
 clap-2.33.1
+cpuprofiler-0.0.4
 crossbeam-channel-0.4.2
 crossbeam-utils-0.7.2
 dbus-0.8.3
 difference-2.0.0
 doc-comment-0.3.3
 encoding_rs-0.8.23
+error-chain-0.12.2
 failure-0.1.8
 failure_derive-0.1.8
 float-cmp-0.6.0
@@ -50,6 +52,7 @@ maybe-uninit-2.0.0
 memchr-2.3.3
 nix-0.17.0
 normalize-line-endings-0.3.0
+notmuch-0.6.0
 num-integer-0.1.42
 num-traits-0.2.11
 object-0.19.0
@@ -60,6 +63,7 @@ predicates-1.0.4
 predicates-core-1.0.0
 predicates-tree-1.0.0
 proc-macro2-1.0.18
+progress-0.2.0
 quote-1.0.6
 quoted_printable-0.4.2
 rand-0.7.3
@@ -76,10 +80,12 @@ same-file-1.0.6
 serde-1.0.111
 serde_derive-1.0.111
 serde_json-1.0.53
+supercow-0.1.0
 swayipc-2.6.2
 syn-1.0.30
 synstructure-0.12.3
 tempfile-3.1.0
+terminal_size-0.1.12
 textwrap-0.11.0
 thread_local-1.0.1
 time-0.1.43
@@ -88,6 +94,7 @@ treeline-0.1.0
 unicode-width-0.1.7
 unicode-xid-0.2.0
 uuid-0.8.1
+version_check-0.9.2
 void-1.0.2
 walkdir-2.3.1
 wasi-0.9.0+wasi-snapshot-preview1

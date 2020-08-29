@@ -117,6 +117,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE="profile"
 
 DEPEND="sys-apps/dbus
+	media-sound/pulseaudio
 	profile? ( dev-util/google-perftools )"
 RDEPEND="${DEPEND}"
 BDEPEND=""
@@ -133,5 +134,4 @@ src_compile() {
 
 src_install() {
 	cargo_src_install ${myfeatures:+--features "${myfeatures[*]}"}
-	doman man/i3status-rs.1
 }

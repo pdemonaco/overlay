@@ -133,5 +133,5 @@ src_compile() {
 
 src_install() {
 	cargo_src_install ${myfeatures:+--features "${myfeatures[*]}"}
-	einstalldocs
+	doman man/i3status-rs.1
 }

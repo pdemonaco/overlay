@@ -3,17 +3,20 @@
 
 EAPI=7
 
-inherit qmake-utils eutils multilib
+inherit qmake-utils eutils multilib git-r3
 
 DESCRIPTION="Media Metadata Manager"
 HOMEPAGE="http://www.mediaelch.de/"
+MIXED_CASE="MediaElch"
+
+EGIT_REPO_URI="https://github.com/Komet/${MIXED_CASE}"
+EGIT_COMMIT="v${PV}"
+
 SRC_URI="https://github.com/Komet/MediaElch/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-
-MIXED_CASE="MediaElch"
 
 DEPEND="dev-qt/qtsql:5
 		dev-qt/qtscript:5
@@ -31,11 +34,6 @@ DEPEND="dev-qt/qtsql:5
 		dev-qt/qtscript:5"
 RDEPEND="${DEPEND}"
 BDEPEND=""
-
-src_unpack() {
-	unpack "${P}.tar.gz"
-	mv "${WORKDIR}/${MIXED_CASE}-${PV}" "${WORKDIR}/${P}" || die
-}
 
 src_configure()
 {

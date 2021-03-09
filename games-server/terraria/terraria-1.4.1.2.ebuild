@@ -17,15 +17,21 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
 
-DEPEND=""
+DEPEND="acct-user/terraria
+	acct-group/terraria"
 RDEPEND="${DEPEND}"
 BDEPEND=""
 
 TARGET_DIR="/opt/terraria"
+SERVICE_USER="terraria"
+SERVICE_GROUP="terraria"
 
 src_unpack() {
 	unpack ${A}
 	mv "${PV_NUMBER}/Linux" "${S}"
+
+	# Move the sample config
+	mv "${PV_NUMBER}/Windows/serverconfig.txt" "${S}"
 }
 
 src_install() {
@@ -53,4 +59,15 @@ src_install() {
 	# Install the binary
 	exeinto "${TARGET_DIR}"
 	doexe TerrariaServer*
+
+	# Create the config file
+	diropts -o root -g "${SERVICE_GROUP}" -m 0644
+	dodir /etc/terraria || die
+	insinto /etc/terraria
+	insopts -o root -g "${SERVICE_GROUP}" -m 0644
+	doins serverconfig.txt || die
+
+	# Create world 
+	diropts -o "${SERVICE_USER}" -g "${SERVICE_GROUP}" -m 0755
+	dodir "${TARGET_DIR}/worlds" || die
 }

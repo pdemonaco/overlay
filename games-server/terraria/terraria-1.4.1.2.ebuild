@@ -47,11 +47,10 @@ src_install() {
 	doins monoconfig || die
 	doins monomachineconfig || die
 	doins open-folder || die
-	doins TerrariaServer || die
 	doins Terraria.png || die
 	doins changelog.txt || die
 
 	# Install the binary
 	exeinto "${TARGET_DIR}"
-	doexe TerrariaServer.bin.x86_64
+	doexe TerrariaServer*
 }

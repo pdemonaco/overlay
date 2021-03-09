@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>pdemon@gmail.org</email>
+	</maintainer>
+	<longdescription lang="en">
+		Terraria is a land of adventure! A land of mystery! A land that's yours to shape, defend, and enjoy. Your options in Terraria are limitless. Are you an action gamer with an itchy trigger finger? A master builder? A collector? An explorer? There's something for everyone.
+	</longdescription>
+	<upstream>
+		<maintainer status="active">
+			<email>support@re-logic.com</email>
+			<name>Re-Logic</name>
+		</maintainer>
+		<doc lang="en">https://terraria.gamepedia.com/Terraria_Wiki</doc>
+		<changelog>https://terraria.gamepedia.com/Desktop_version_history</changelog>
+	</upstream>
+</pkgmetadata>

@@ -7,7 +7,7 @@ PV_NUMBER="${PV//[.]/}"
 
 DESCRIPTION="Dig, Fight, Build!"
 HOMEPAGE="https://terraria.org"
-BASE_URI="https://terraria.org/system/dedicated_servers/archives/000/000/042/original"
+BASE_URI="https://terraria.org/system/dedicated_servers/archives/000/000/043/original"
 SRC_URI="${BASE_URI}/terraria-server-${PV_NUMBER}.zip -> terraria-server_${PV}.zip"
 
 # This isn't the right license, but I'm not going to figure out the right one

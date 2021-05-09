@@ -46,6 +46,5 @@ src_unpack() {
 
 src_install() {
 	dobin "${PN}" || die
-	into "/usr/bin"
-	dosym "${PN}" duplicacy || die
+	dosym "${PN}" /usr/bin/duplicacy || die
 }

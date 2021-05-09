@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -35,9 +35,9 @@ src_unpack() {
 
 	# Copy the binary over from the distfiles directory
 	if use x86; then
-		cp "/usr/portage/distfiles/${BIN_X86}" "${PN}" || die
+		cp "${DISTDIR}/${BIN_X86}" "${PN}" || die
 	elif use amd64; then
-		cp "/usr/portage/distfiles/${BIN_X64}" "${PN}" || die
+		cp "${DISTDIR}/${BIN_X64}" "${PN}" || die
 	fi
 
 	# Get back out of there

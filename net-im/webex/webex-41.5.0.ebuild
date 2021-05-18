@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit rpm
+inherit rpm xdg-utils
 
 DESCRIPTION="Webex Teams"
 HOMEPAGE="https://teams.webex.com"

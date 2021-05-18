@@ -52,14 +52,24 @@ src_install() {
 	# Ensure root actually owns everything in the temporary directory
 	chown -R portage:portage "${S}"
 
-	# Create the output directory
-	local dest="/opt/puppetlabs/${PN}"
+	# Copy the extracted files into the destdir
+	cp -rpP "${WORKDIR}/usr" "${D}" || \
+		die "Failed to copy install files into the target!"
+
+	# Create the opt directory
+	local dest="/opt/Webex"
 	dodir "${dest}" || die "Failed to create ${dest}"
 
-	# Copy the pdk subdirectory from it's temp output
-	cp -pPR "${S}/opt/puppetlabs/pdk" "${D}/opt/puppetlabs/" || \
+	# Copy the opt subdirectory from it's temp output
+	cp -pPR "${S}/opt/Webex" "${D}/opt/Webex/" || \
 		die "Failed to copy install files into target"
 
-	# Create a symlink for the pdk binary
-	dosym "${dest}/bin/${PN}" "/usr/bin/${PN}" || die "Failed to create symlink"
+	# Create a symlink for the Webex binary
+	dosym "${dest}/bin/CiscoCollabHost" "/usr/bin/${PN}" || die "Failed to create symlink"
+}
+
+pkg_postinst() {
+	xdg_desktop_database_update
+	xdg_icon_cache_update
+	xdg_mimeinfo_database_update
 }

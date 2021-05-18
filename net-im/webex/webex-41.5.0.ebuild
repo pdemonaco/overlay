@@ -53,7 +53,7 @@ src_install() {
 	chown -R portage:portage "${S}"
 
 	# Copy the extracted files into the destdir
-	cp -rpP "${WORKDIR}/usr" "${D}" || \
+	cp -rpP "${S}/usr" "${D}" || \
 		die "Failed to copy install files into the target!"
 
 	# Create the opt directory

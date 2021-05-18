@@ -61,7 +61,7 @@ src_install() {
 	dodir "${dest}" || die "Failed to create ${dest}"
 
 	# Copy the opt subdirectory from it's temp output
-	cp -pPR "${S}/opt/Webex" "${D}/opt/Webex/" || \
+	cp -pPR "${S}/opt/Webex" "${D}/opt/" || \
 		die "Failed to copy install files into target"
 
 	# Create a symlink for the Webex binary

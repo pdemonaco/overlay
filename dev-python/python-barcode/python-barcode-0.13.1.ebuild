@@ -17,5 +17,11 @@ IUSE="png"
 
 DEPEND=""
 RDEPEND="${DEPEND}
-	png? ( dev-python/pillow )"
-BDEPEND=""
+	png? ( dev-python/pillow[${PYTHON_USEDEP}] )"
+BDEPEND="
+	test? (
+		dev-python/pytest[${PYTHON_USEDEP}]
+		dev-python/pytest-cov[${PYTHON_USEDEP}]
+	)"
+
+distutils_enable_tests pytest

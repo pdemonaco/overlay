@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>pdemon@gmail.org</email>
+		<name>Phil DeMonaco</name>
+	</maintainer>
+	<longdescription lang="en">
+		A GlobalProtect VPN client (GUI) for Linux based on Openconnect and built with Qt5, supports SAML auth mode, inspired by gp-saml-gui.
+	</longdescription>
+	<upstream>
+		<maintainer status="active">
+			<name>Kevin Yue</name>
+		</maintainer>
+		<remote-id type="github">yuezk/GlobalProtect-openconnect</remote-id>
+	</upstream>
+</pkgmetadata>

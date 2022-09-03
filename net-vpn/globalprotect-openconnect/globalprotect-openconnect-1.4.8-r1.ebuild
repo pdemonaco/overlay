@@ -22,6 +22,10 @@ DEPEND=">=net-vpn/openconnect-8.0.0
 RDEPEND="${DEPEND}"
 BDEPEND=""
 
+PATCHES=(
+	"${FILESDIR}/${P}-SingleApplication.patch"
+)
+
 src_configure() {
 	local mycmakeargs=(
 		-DCMAKE_BUILD_TYPE=Release

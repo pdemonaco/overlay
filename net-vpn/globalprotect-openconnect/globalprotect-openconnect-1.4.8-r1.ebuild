@@ -22,6 +22,10 @@ DEPEND=">=net-vpn/openconnect-8.0.0
 RDEPEND="${DEPEND}"
 BDEPEND=""
 
+src_prepare() {
+	mv "${WORKDIR}/GlobalProtect-openconnect-${PV}" "${S}"
+}
+
 src_configure() {
 	local mycmakeargs=(
 		-DCMAKE_BUILD_TYPE=Release

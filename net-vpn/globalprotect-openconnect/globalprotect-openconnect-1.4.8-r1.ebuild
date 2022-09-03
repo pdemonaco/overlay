@@ -7,7 +7,7 @@ inherit cmake
 
 DESCRIPTION="GlobalProtect GUI client with SAML Authentication"
 HOMEPAGE="https://github.com/yuezk/GlobalProtect-openconnect"
-SRC_URI="${HOMEPAGE}/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="${HOMEPAGE}/releases/download/v${PV}/${P}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
@@ -21,10 +21,6 @@ DEPEND=">=net-vpn/openconnect-8.0.0
 	dev-qt/qtdbus:5"
 RDEPEND="${DEPEND}"
 BDEPEND=""
-
-src_prepare() {
-	mv "${WORKDIR}/GlobalProtect-openconnect-${PV}" "${S}"
-}
 
 src_configure() {
 	local mycmakeargs=(

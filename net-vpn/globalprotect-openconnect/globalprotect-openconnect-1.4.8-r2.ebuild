@@ -18,7 +18,8 @@ DEPEND=">=net-vpn/openconnect-8.0.0
 	dev-qt/qtcore:5
 	dev-qt/qtwebengine:5
 	dev-qt/qtwebsockets:5
-	dev-qt/qtdbus:5"
+	dev-qt/qtdbus:5
+	dev-libs/qtkeychain"
 RDEPEND="${DEPEND}"
 BDEPEND=""
 

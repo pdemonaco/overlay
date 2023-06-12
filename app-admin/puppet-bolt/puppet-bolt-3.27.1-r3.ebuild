@@ -40,5 +40,5 @@ src_install() {
 
 	# Generate the executable symlinks
 	chmod 0755 -R "${D}/opt/puppetlabs/bolt/bin/"
-	dosym "${dest}/bin/bolt" "/usr/bin/bolt" || die "Failed to create symlink"
+	dosym "/opt/puppetlabs/bin/bolt" "/usr/bin/bolt" || die "Failed to create symlink"
 }

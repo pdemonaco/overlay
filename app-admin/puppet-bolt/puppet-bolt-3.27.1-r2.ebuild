@@ -30,17 +30,15 @@ src_unpack() {
 }
 
 src_install() {
-	# Ensure root actually owns everything in the temporary directory
+	# Ensure portage actually owns everything in the temporary directory
 	chown -R portage:portage "${S}"
 
-	# Create the output directory
-	local dest="/opt/puppetlabs/bolt"
-	dodir "${dest}" || die "Failed to create ${dest}"
+	# Create the base directory and deploy the config files
+	insinto /opt
+	dodir puppetlabs/bolt
+	doins -r opt/*
 
-	# Copy the bolt subdirectory from it's temp output
-	cp -pPR "${S}/opt/puppetlabs/bolt" "${D}/opt/puppetlabs/" || \
-		die "Failed to copy install files into target"
-
-	# Create a symlink for the bolt binary
+	# Generate the executable symlinks
+	chmod 0755 -R "${D}/opt/puppetlabs/bolt/bin/"
 	dosym "${dest}/bin/bolt" "/usr/bin/bolt" || die "Failed to create symlink"
 }

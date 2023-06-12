@@ -40,6 +40,6 @@ src_install() {
 	cp -pPR "${S}/opt/puppetlabs/bolt" "${D}/opt/puppetlabs/" || \
 		die "Failed to copy install files into target"
 
-	# Create a symlink for the pdk binary
-	dosym "${dest}/bin/${PN}" "/usr/bin/${PN}" || die "Failed to create symlink"
+	# Create a symlink for the bolt binary
+	dosym "${dest}/bin/bolt" "/usr/bin/bolt" || die "Failed to create symlink"
 }

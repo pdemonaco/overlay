@@ -16,7 +16,8 @@ IUSE=""
 
 RESTRICT="mirror"
 
-DEPEND=""
+DEPEND="virtual/libcrypt
+	sys-libs/readline"
 RDEPEND="${DEPEND}"
 
 src_unpack() {

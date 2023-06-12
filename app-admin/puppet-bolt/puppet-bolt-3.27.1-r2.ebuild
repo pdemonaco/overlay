@@ -34,7 +34,7 @@ src_install() {
 	chown -R portage:portage "${S}"
 
 	# Create the output directory
-	local dest="/opt/puppetlabs/${PN}"
+	local dest="/opt/puppetlabs/bolt"
 	dodir "${dest}" || die "Failed to create ${dest}"
 
 	# Copy the bolt subdirectory from it's temp output

@@ -23,7 +23,7 @@ src_unpack() {
 	# Make the "source" directory and move everything in
 	mkdir "${S}"
 	mv "${WORKDIR}/opt" "${S}/"
-	mv "${WORKDIR}/bin" "${S}/"
+	mv "${WORKDIR}/usr" "${S}/"
 }
 
 src_install() {
@@ -40,5 +40,6 @@ src_install() {
 
 	# Create the wrapper script
 	exeinto "${D}/usr/bin"
-	doexe "${S}/bin/vagrant" || die "Failed to install wrapper script"
+	doexe "${S}/usr/bin/vagrant" || die "Failed to install wrapper script"
+	doexe "${S}/usr/bin/vagrant-go" || die "Failed to install wrapper script"
 }

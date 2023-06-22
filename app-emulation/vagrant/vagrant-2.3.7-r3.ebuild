@@ -39,7 +39,7 @@ src_install() {
 		die "Failed to copy install files into target"
 
 	# Create the wrapper script
-	exeinto "${D}/usr/bin"
+	exeinto "/usr/bin"
 	doexe "${S}/usr/bin/vagrant" || die "Failed to install wrapper script"
 	doexe "${S}/usr/bin/vagrant-go" || die "Failed to install wrapper script"
 }

@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit cmake
+inherit cmake xdg-utils
 
 DESCRIPTION="GlobalProtect GUI client with SAML Authentication"
 HOMEPAGE="https://github.com/yuezk/GlobalProtect-openconnect"
@@ -11,7 +11,7 @@ SRC_URI="https://github.com/yuezk/GlobalProtect-openconnect/releases/download/v$
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="amd64"
+KEYWORDS="~amd64"
 RESTRICT="mirror"
 
 DEPEND=">=net-vpn/openconnect-9.0.0
@@ -38,4 +38,12 @@ src_configure() {
 src_compile() {
 	cmake_src_compile
 	cmake_build
+}
+
+pkg_postinst() {
+	xdg_icon_cache_update
+}
+
+pkg_postrm() {
+	xdg_icon_cache_update
 }

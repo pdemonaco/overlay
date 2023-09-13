@@ -5,6 +5,9 @@
 		<email>pdemon@gmail.com</email>
 	</maintainer>
 	<longdescription lang="en">
-		MediaElch is a MediaManager for Kodi. 
+		MediaElch is a MediaManager for Kodi. Information about Movies, TV Shows, Concerts and Music are stored as nfo files. Fanarts are downloaded automatically from fanart.tv. Using the nfo generator, MediaElch can be used with other MediaCenters as well.
 	</longdescription>
+	<upstream>
+		<remote-id type="github">Komet/MediaElch</remote-id>
+	</upstream>
 </pkgmetadata>

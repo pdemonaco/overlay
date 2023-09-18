@@ -11,7 +11,8 @@ inherit distutils-r1
 DESCRIPTION="Generate barcodes in python"
 HOMEPAGE="https://github.com/WhyNotHugo/python-barcode"
 #SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
-SRC_URI="https://github.com/WhyNotHugo/${PN}/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/WhyNotHugo/${PN}/archive/refs/tags/v${PV}.tar.gz
+	-> ${P}.gh.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
@@ -24,10 +25,16 @@ RDEPEND="${DEPEND}
 	png? ( dev-python/pillow[${PYTHON_USEDEP}] )
 "
 BDEPEND="
+	dev-python/setuptools-scm[${PYTHON_USEDEP}]
 	test? (
 		dev-python/pytest[${PYTHON_USEDEP}]
 		dev-python/pytest-cov[${PYTHON_USEDEP}]
 	)
 "
+
+src_compile() {
+	export SETUPTOOLS_SCM_PRETEND_VERSION=${PV}
+	distutils-r1_src_compile
+}
 
 distutils_enable_tests pytest

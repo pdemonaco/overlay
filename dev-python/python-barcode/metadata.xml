@@ -6,7 +6,9 @@
 		<name>Phil DeMonaco</name>
 	</maintainer>
 	<longdescription lang="en">
-		Generate barcodes directly from python!
+		Provides a simple way to create barcodes in Python with few
+		external dependencies. Currently, nothing is needed when generating 
+		SVG files, however, Pillow is required to generate images (e.g. PNGs)
 	</longdescription>
 	<upstream>
 		<remote-id type="github">WhyNotHugo/python-barcode</remote-id>

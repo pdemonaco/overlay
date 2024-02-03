@@ -5,7 +5,9 @@
 		<email>pdemon@gmail.com</email>
 	</maintainer>
 	<longdescription lang="en">
-		Duplicacy is a backup utility developed by Gilbert Chen.
+		Duplicacy is a new generation cross-platform cloud backup tool based on the idea of Lock-Free Deduplication.
+
+		Our paper explaining the inner workings of Duplicacy has been accepted by IEEE Transactions on Cloud Computing and will appear in a future issue this year. The final draft version is available here for those who don't have IEEE subscriptions.
 	</longdescription>
 	<upstream>
 		<doc lang="en">https://github.com/gilbertchen/duplicacy/wiki</doc>

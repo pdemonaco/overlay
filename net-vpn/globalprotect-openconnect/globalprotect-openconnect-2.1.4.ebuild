@@ -32,18 +32,18 @@ src_unpack() {
 
 	# Make the "source" directory and move everything in
 	mkdir "${S}"
-	mv "${WORKDIR}/target/release" "${S}"
-	mv "${WORKDIR}/packaging/files/usr" "${S}/usr"
+	mv "${WORKDIR}/usr" "${S}/usr"
 }
 
 src_install() {
 	# Ensure root actually owns everything in the temporary directory
 	chown -R portage:portage "${S}"
 
-	dobin gpclient
-	dobin gpauth
-	dobin gpservice
-	dobin gpgui-helper
+	dobin "${S}/usr/bin/gpclient"
+	dobin "${S}/usr/bin/gpauth"
+	dobin "${S}/usr/bin/gpservice"
+	dobin "${S}/usr/bin/gpgui-helper"
+	dobin "${S}/usr/bin/gpgui"
 
 	domenu "${S}/usr/share/applications/gpgui.desktop"
 

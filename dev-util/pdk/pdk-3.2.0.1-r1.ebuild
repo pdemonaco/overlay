@@ -6,14 +6,16 @@ EAPI=8
 inherit rpm
 
 DESCRIPTION="Puppet Development Kit"
-HOMEPAGE="https://puppet.com/docs/pdk/1.x/pdk.html"
-SRC_URI="http://yum.puppetlabs.com/puppet/el/7/x86_64/${P}-1.el7.x86_64.rpm"
+HOMEPAGE="https://puppet.com/docs/pdk/3.x/pdk.html"
+SRC_URI="http://yum.puppetlabs.com/puppet/el/9/x86_64/${P}-1.el9.x86_64.rpm"
 
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 
 RESTRICT="mirror"
+
+RDEPEND="virtual/libcrypt"
 
 src_unpack() {
 	rpm_src_unpack ${A}

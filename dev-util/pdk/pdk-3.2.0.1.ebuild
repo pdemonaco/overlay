@@ -1,23 +1,19 @@
-# Copyright 2022 Gentoo Authors
+# Copyright 2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 inherit rpm
 
 DESCRIPTION="Puppet Development Kit"
 HOMEPAGE="https://puppet.com/docs/pdk/1.x/pdk.html"
-SRC_URI="http://yum.puppetlabs.com/puppet/el/8/x86_64/${P}-1.el8.x86_64.rpm"
+SRC_URI="http://yum.puppetlabs.com/puppet/el/7/x86_64/${P}-1.el7.x86_64.rpm"
 
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE=""
 
 RESTRICT="mirror"
-
-DEPEND=""
-RDEPEND="${DEPEND}"
 
 src_unpack() {
 	rpm_src_unpack ${A}

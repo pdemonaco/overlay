@@ -12,12 +12,8 @@ SRC_URI="http://yum.puppetlabs.com/puppet/el/7/x86_64/${P}-1.el7.x86_64.rpm"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE=""
 
 RESTRICT="mirror"
-
-DEPEND=""
-RDEPEND="${DEPEND}"
 
 src_unpack() {
 	rpm_src_unpack ${A}

@@ -1,4 +1,4 @@
-# Copyright 2022 Gentoo Authors
+# Copyright 2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -11,7 +11,7 @@ PYTHON_COMPAT=(
 GITHUB_URI='https://github.com/pdemonaco'
 INIT_SCRIPTS='factorio-init'
 MOD_UPDATER='factorio-mod-updater'
-MOD_UPDATER_VER="0.2.4"
+MOD_UPDATER_VER="0.2.5"
 INIT_VER="0.2.1"
 
 DESCRIPTION="Headless server for Factorio."
@@ -27,7 +27,6 @@ SRC_URI="${SRC_URI}
 LICENSE="freedist"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE=""
 RESTRICT="mirror"
 
 DEPEND=">=sys-libs/glibc-2.18
@@ -54,7 +53,6 @@ src_unpack() {
 
 src_install() {
 	# Create the main install directory in /opt
-	dodir "${TARGET_DIR}" || die
 	insinto "${TARGET_DIR}"
 
 	# Install the data directory and the config file
@@ -62,7 +60,6 @@ src_install() {
 	doins config-path.cfg || die
 
 	# Install the binary as a binary
-	dodir "${TARGET_DIR}/bin/x64/" || die
 	exeinto "${TARGET_DIR}/bin/x64/"
 	doexe bin/x64/factorio || die
 

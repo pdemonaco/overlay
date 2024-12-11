@@ -1,0 +1,61 @@
+preinstall scriptlet (using /bin/sh):
+# Save state so we know later if this is an upgrade or an install
+mkdir -p /var/lib/rpm-state/pdk
+if [ "$1" -eq 1 ] ; then
+ touch /var/lib/rpm-state/pdk/install
+fi
+if [ "$1" -gt 1 ] ; then
+ touch /var/lib/rpm-state/pdk/upgrade
+fi
+
+# Run preinstall scripts on install if defined
+if [ "$1" -eq 1 ] ; then
+ : no preinstall scripts provided
+fi
+
+# Run preinstall scripts on upgrade if defined
+if [ "$1" -gt 1 ] ; then
+ : no preinstall scripts provided
+fi
+postinstall scriptlet (using /bin/sh):
+# Run required postinstall scripts on install if defined
+if [ -e /var/lib/rpm-state/pdk/install ] ; then
+ : no postinstall required scripts provided
+fi
+
+# Run required postinstall scripts on upgrade if defined
+if [ -e /var/lib/rpm-state/pdk/upgrade ] ; then
+ : no postinstall required scripts provided
+fi
+preuninstall scriptlet (using /bin/sh):
+# Run pre-uninstall scripts on upgrade if defined
+if [ "$1" -eq 1 ] ; then
+ : no preremove scripts provided
+fi
+
+# Run pre-uninstall scripts on removal if defined
+if [ "$1" -eq 0 ] ; then
+ : no preremove scripts provided
+fi
+postuninstall scriptlet (using /bin/sh):
+# Run post-uninstall scripts on upgrade if defined
+if [ "$1" -eq 1 ] ; then
+ : no postremove scripts provided
+fi
+
+# Run post-uninstall scripts on removal if defined
+if [ "$1" -eq 0 ] ; then
+ : no postremove scripts provided
+fi
+posttrans scriptlet (using /bin/sh):
+# Run post-transaction scripts on install if defined
+if [ -e /var/lib/rpm-state/pdk/install ] ; then
+ : no postinstall scripts provided
+ rm /var/lib/rpm-state/pdk/install
+fi
+
+# Run post-transaction scripts on upgrade if defined
+if [ -e /var/lib/rpm-state/pdk/upgrade ] ; then
+ : no postinstall scripts provided
+ rm /var/lib/rpm-state/pdk/upgrade
+fi

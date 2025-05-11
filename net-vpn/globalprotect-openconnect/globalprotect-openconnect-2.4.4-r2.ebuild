@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit rpm desktop
+inherit rpm desktop xdg-utils
 
 DESCRIPTION="GlobalProtect GUI client with SAML Authentication"
 HOMEPAGE="https://github.com/yuezk/GlobalProtect-openconnect"
@@ -60,4 +60,9 @@ src_install() {
 
 	insinto /usr/share/polkit-1/actions
 	doins "${S}/usr/share/polkit-1/actions/com.yuezk.gpgui.policy"
+}
+
+pkg_postinst() {
+	# Updating the icon cache
+	xdg_desktop_database_update
 }

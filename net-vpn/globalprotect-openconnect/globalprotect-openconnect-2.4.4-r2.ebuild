@@ -65,4 +65,5 @@ src_install() {
 pkg_postinst() {
 	# Updating the icon cache
 	xdg_desktop_database_update
+	xdg_icon_cache_update
 }

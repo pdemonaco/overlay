@@ -33,11 +33,9 @@ RDEPEND="
 
 ruby_add_rdepend "
 	>=dev-ruby/bcrypt_pbkdf-1.1.0
-	>=dev-ruby/childprocess-4.1.0
+	>=dev-ruby/childprocess-5.1.0
 	>=dev-ruby/ed25519-1.3.0
 	dev-ruby/erubi
-	>=dev-ruby/googleapis-common-protos-types-1.19.0
-	>=dev-ruby/grpc-1.62
 	>=dev-ruby/hashicorp-checkpoint-0.1.5
 	>=dev-ruby/i18n-1.12:1
 	>=dev-ruby/listen-3.7
@@ -50,7 +48,6 @@ ruby_add_rdepend "
 	>=dev-ruby/net-scp-4.0.0
 	>=dev-ruby/ostruct-0.6.0
 	>=dev-ruby/rexml-3.2.0
-	>=dev-ruby/rgl-0.5.10
 	>=dev-ruby/rubyzip-2.3.2
 	>=dev-ruby/vagrant_cloud-3.1.2
 	>=dev-ruby/ipaddr-1.2.4

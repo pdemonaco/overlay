@@ -78,7 +78,7 @@ src_install() {
 	# symlinks
 	chmod 0755 -R "${D}/opt/puppetlabs/puppet/bin/"
 	dosym ../../opt/puppetlabs/bin/facter /usr/bin/facter
-	dosym ../../opt/puppetlabs/bin/hiera /usr/bin/hiera
+	dosym ../../opt/puppetlabs/bin/bolt /usr/bin/bolt
 	dosym ../../opt/puppetlabs/bin/puppet /usr/bin/puppet
 
 	# Handling of the path to the crypt library during the ongoing migration

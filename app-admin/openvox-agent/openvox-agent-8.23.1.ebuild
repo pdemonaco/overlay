@@ -73,7 +73,7 @@ src_install() {
 	fperms 0750 /opt/puppetlabs/puppet/cache
 	# init
 	newinitd "${FILESDIR}/puppet.initd2" puppet
-	systemd_dounit lib/systemd/system/puppet.service
+	systemd_dounit usr/lib/systemd/system/puppet.service
 	newtmpfiles usr/lib/tmpfiles.d/puppet-agent.conf puppet-agent.conf
 	# symlinks
 	chmod 0755 -R "${D}/opt/puppetlabs/puppet/bin/"

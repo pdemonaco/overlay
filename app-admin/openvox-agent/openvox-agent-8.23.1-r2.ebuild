@@ -45,7 +45,7 @@ RDEPEND="${CDEPEND}
 	puppetdb? ( >=dev-ruby/puppetdb-termini-5.0.1 )
 	!app-admin/puppet-agent
 	!app-admin/puppet
-	!app-admin/puppet-bolt"
+	!dev-ruby/facter"
 
 QA_PREBUILT="*"
 
@@ -81,7 +81,6 @@ src_install() {
 	# symlinks
 	chmod 0755 -R "${D}/opt/puppetlabs/puppet/bin/"
 	dosym ../../opt/puppetlabs/bin/facter /usr/bin/facter
-	dosym ../../opt/puppetlabs/bin/bolt /usr/bin/bolt
 	dosym ../../opt/puppetlabs/bin/puppet /usr/bin/puppet
 
 	# Handling of the path to the crypt library during the ongoing migration

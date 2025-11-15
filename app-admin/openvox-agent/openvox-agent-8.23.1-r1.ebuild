@@ -44,7 +44,8 @@ RDEPEND="${CDEPEND}
 	)
 	puppetdb? ( >=dev-ruby/puppetdb-termini-5.0.1 )
 	!app-admin/puppet-agent
-	!app-admin/puppet"
+	!app-admin/puppet
+	!app-admin/puppet-bolt"
 
 QA_PREBUILT="*"
 

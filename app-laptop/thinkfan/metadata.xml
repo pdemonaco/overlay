@@ -6,8 +6,9 @@
 		<flag name="atasmart">include libatasmart support to get disc temperature</flag>
 		<flag name="nvidia">allow thinkfan to read GPU temperature from the proprietary nVidia driver</flag>
 		<flag name="yaml">use YAML format for config file</flag>
+		<flag name="lm-sensors">allow thinkfan to directly read data from linux drivers</flag>
 	</use>
 	<upstream>
-		<remote-id type="sourceforge">thinkfan</remote-id>
+		<remote-id type="github">vmatare/thinkfan</remote-id>
 	</upstream>
 </pkgmetadata>

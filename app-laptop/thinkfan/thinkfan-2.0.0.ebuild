@@ -1,7 +1,7 @@
-# Copyright 2020 Gentoo Authors
+# Copyright 2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 inherit cmake readme.gentoo-r1
 
@@ -12,13 +12,13 @@ SRC_URI="https://github.com/vmatare/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="atasmart nvidia +yaml"
+IUSE="atasmart nvidia +yaml lm-sensors"
 
 DEPEND="atasmart? ( dev-libs/libatasmart )
-	yaml? ( dev-cpp/yaml-cpp )"
+	yaml? ( dev-cpp/yaml-cpp )
+	lm-sensors? ( sys-apps/lm-sensors )"
 RDEPEND="${DEPEND}
 	nvidia? ( x11-drivers/nvidia-drivers )"
-BDEPEND=""
 
 DOC_CONTENTS="
 	Please read the documentation and copy an appropriate

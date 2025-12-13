@@ -3,7 +3,7 @@
 From within the package directory:
 
 ```bash
-pkgdev manifest -f && git add ./* && pkgcheck scan -p stable .
+pkgdev manifest -f -v && git add ./* && pkgcheck scan -p stable . && pkgdev commit
 ```
 
 ## Committing Changes

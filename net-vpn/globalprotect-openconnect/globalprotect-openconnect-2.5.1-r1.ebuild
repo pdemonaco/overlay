@@ -18,15 +18,24 @@ RESTRICT="mirror"
 DEPEND=">=net-vpn/openconnect-9.0.0
 	>=gnome-base/gnome-keyring-42.1
 	>=dev-lang/perl-5.38.2
-	>=sys-auth/polkit-123
-	>=net-libs/webkit-gtk-2.46
-	>=dev-libs/openssl-3.3.3
-	>=net-libs/libsoup-2.74.3
-	>=app-arch/xz-utils-5.6.4
-	>=x11-libs/gtk+-2.24.33
-	>=dev-libs/glib-2.82.5
+	dev-libs/libayatana-appindicator
+	>=sys-libs/glibc-2.38
+	x11-libs/cairo
+	>=dev-libs/openssl-3.0.0
+	sys-apps/dbus
+	>=sys-devel/gcc-4.2.0
+	x11-libs/gtk+:3
 	>=x11-libs/gdk-pixbuf-2.42
-	>=x11-libs/cairo-1.18"
+	>=dev-libs/glib-2.82.5
+	dev-libs/gmp
+	>=dev-libs/nettle-3.6
+	net-libs/webkit-gtk:4.1
+	>=app-arch/lz4-1.10
+	>=app-arch/xz-utils-5.8.2
+	>=net-libs/libsoup-3
+	>=net-libs/gnutls-3.8.11[pkcs11]
+	sys-libs/zlib-ng[compat]
+	net-vpn/vpnc-scripts"
 RDEPEND="${DEPEND}"
 #BDEPEND=">=dev-lang/rust-1.75.0
 #	net-libs/webkit-gtk:4

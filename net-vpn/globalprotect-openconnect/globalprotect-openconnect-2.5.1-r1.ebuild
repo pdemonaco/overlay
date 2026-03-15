@@ -38,7 +38,6 @@ RDEPEND=">=net-vpn/openconnect-9.0.0
 	sys-libs/zlib-ng[compat,abi_x86_64(-)]
 	sys-libs/zlib[abi_x86_64(-)]
 	)
-	sys-libs/zlib-ng[compat]
 	net-vpn/vpnc-scripts"
 #BDEPEND=">=dev-lang/rust-1.75.0
 #	net-libs/webkit-gtk:4

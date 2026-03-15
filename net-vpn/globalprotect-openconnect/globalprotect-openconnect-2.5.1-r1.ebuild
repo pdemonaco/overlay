@@ -34,6 +34,10 @@ RDEPEND=">=net-vpn/openconnect-9.0.0
 	>=app-arch/xz-utils-5.8.2
 	>=net-libs/libsoup-3
 	>=net-libs/gnutls-3.8.11[pkcs11]
+	|| (
+	sys-libs/zlib-ng[compat,abi_x86_64(-)]
+	sys-libs/zlib[abi_x86_64(-)]
+	)
 	sys-libs/zlib-ng[compat]
 	net-vpn/vpnc-scripts"
 #BDEPEND=">=dev-lang/rust-1.75.0

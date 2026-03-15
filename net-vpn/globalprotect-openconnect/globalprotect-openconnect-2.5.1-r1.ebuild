@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64"
 RESTRICT="mirror"
 
-DEPEND=">=net-vpn/openconnect-9.0.0
+RDEPEND=">=net-vpn/openconnect-9.0.0
 	>=gnome-base/gnome-keyring-42.1
 	>=dev-lang/perl-5.38.2
 	dev-libs/libayatana-appindicator
@@ -36,7 +36,6 @@ DEPEND=">=net-vpn/openconnect-9.0.0
 	>=net-libs/gnutls-3.8.11[pkcs11]
 	sys-libs/zlib-ng[compat]
 	net-vpn/vpnc-scripts"
-RDEPEND="${DEPEND}"
 #BDEPEND=">=dev-lang/rust-1.75.0
 #	net-libs/webkit-gtk:4
 #	dev-libs/libappindicator

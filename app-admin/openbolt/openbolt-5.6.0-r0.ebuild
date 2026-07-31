@@ -42,6 +42,6 @@ src_install() {
 
 	# Add bash completion when it's enabled.
 	if use bash-completion; then
-		newbashcomp "${S}/etc/bash_completion.d/bolt.sh" "${PN}"
+		dobashcomp "${S}/opt/puppetlabs/bolt/share/bash-completion" "${PN}"
 	fi
 }

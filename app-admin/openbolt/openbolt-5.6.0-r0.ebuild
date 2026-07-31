@@ -3,6 +3,8 @@
 
 EAPI=8
 
+RPM_COMPRESS_TYPE="zstd"
+
 inherit rpm shell-completion
 
 DESCRIPTION="Stand alone task runner"
@@ -21,6 +23,7 @@ src_unpack() {
 
 	# Make the "source" directory and move everything in
 	mkdir "${S}"
+	mv "${WORKDIR}/etc" "${S}/"
 	mv "${WORKDIR}/opt" "${S}/"
 	mv "${WORKDIR}/usr" "${S}/"
 }
@@ -42,6 +45,7 @@ src_install() {
 
 	# Add bash completion when it's enabled.
 	if use bash-completion; then
-		dobashcomp "${S}/opt/puppetlabs/bolt/share/bash-completion" "${PN}"
+		dobashcomp opt/puppetlabs/bolt/share/bash-completion/completions/*
+		newbashcomp "opt/puppetlabs/bolt/lib/ruby/gems/"*"/gems/${PN}-${PV}/resources/bolt_bash_completion.sh" bolt
 	fi
 }

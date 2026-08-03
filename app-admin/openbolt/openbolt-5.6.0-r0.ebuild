@@ -45,7 +45,6 @@ src_install() {
 
 	# Add bash completion when it's enabled.
 	if use bash-completion; then
-		dobashcomp opt/puppetlabs/bolt/share/bash-completion/completions/*
 		newbashcomp "opt/puppetlabs/bolt/lib/ruby/gems/"*"/gems/${PN}-${PV}/resources/bolt_bash_completion.sh" bolt
 	fi
 }
